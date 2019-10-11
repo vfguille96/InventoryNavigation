@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="padding_general_16dp">16dp</dimen>
+    <dimen name="padding_general_36dp">36dp</dimen>
+    <dimen name="imgBtnLogin">40dp</dimen>
+    <dimen name="tvMarginTop_24dp">24dp</dimen>
+    <dimen name="padding_general_48dp">48dp</dimen>
 </resources>

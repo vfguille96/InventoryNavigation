@@ -18,6 +18,10 @@
 
     <color name="colorGoogle">#DB4437</color>
     <color name="colorFacebook">#3b5998</color>
+    <color name="colorTwitter">#00acee</color>
+
+    <color name="primary_text_default_material_light2">#de000000</color>
+    <color name="secondary_text_material_light2">#8a000000</color>
 
 
 </resources>
