@@ -4,4 +4,6 @@
     <dimen name="imgBtnLogin">40dp</dimen>
     <dimen name="tvMarginTop_24dp">24dp</dimen>
     <dimen name="padding_general_48dp">48dp</dimen>
+    <dimen name="text_24sp">24sp</dimen>
+    <dimen name="text_18sp">18sp</dimen>
 </resources>

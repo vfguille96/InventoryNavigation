@@ -26,7 +26,8 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                     initLogin();
             }
-        };*/
+        };
+        Thread.start(runnable);*/
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -37,8 +38,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void initLogin() {
-        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
         finish();
     }
 }

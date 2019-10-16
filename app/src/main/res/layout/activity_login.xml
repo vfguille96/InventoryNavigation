@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginTop="@dimen/tvMarginTop_24dp"
-        android:background="@drawable/login_btn_signin"
+        android:background="@drawable/selector_btn_signin"
         android:fontFamily="@font/productsansbold"
         android:text="@string/signin"
         android:textColor="@android:color/white" />
