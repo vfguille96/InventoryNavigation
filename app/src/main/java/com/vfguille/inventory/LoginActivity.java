@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class LoginActivity extends AppCompatActivity {
     Button btnSignIn;
+    Button btnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,10 +20,16 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, DashBoardActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(LoginActivity.this, DashBoardActivity.class).setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP));
             }
         });
 
+        btnSignUp = findViewById(R.id.btnSignUp);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class).setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            }
+        });
     }
 }

@@ -12,4 +12,6 @@
     <string name="sections">Sections</string>
     <string name="products">Products</string>
     <string name="dependencies">Dependencies</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
 </resources>
