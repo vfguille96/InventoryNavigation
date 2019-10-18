@@ -9,17 +9,17 @@
         android:roundIcon="@mipmap/ic_inventory_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeMaterial">
-        <activity android:name=".SignUpActivity" android:label="@string/signup">
+        <activity android:name=".ui.dash.login.SignUpActivity" android:label="@string/signup">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" />
+                android:value=".ui.dash.login.LoginActivity" />
         </activity>
-        <activity android:name=".DashBoardActivity" />
+        <activity android:name=".ui.dash.dash.DashBoardActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.dash.login.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".ui.dash.splash.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/tvMarginTop_24dp"
     android:theme="@style/AppThemeMaterial"
-    tools:context=".SignUpActivity">
+    tools:context=".ui.dash.login.SignUpActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilUser"

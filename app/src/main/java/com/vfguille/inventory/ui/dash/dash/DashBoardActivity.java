@@ -1,9 +1,10 @@
-package com.vfguille.inventory;
+package com.vfguille.inventory.ui.dash.dash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.Toolbar;
+
+import com.vfguille.inventory.R;
 
 public class DashBoardActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.vfguille.inventory;
+package com.vfguille.inventory.ui.dash.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.vfguille.inventory.ui.dash.dash.DashBoardActivity;
+import com.vfguille.inventory.R;
 
 public class LoginActivity extends AppCompatActivity {
     Button btnSignIn;
@@ -15,8 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        btnSignIn = findViewById(R.id.btSignIn);
+        initializeComponents();
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,12 +26,16 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnSignUp = findViewById(R.id.btnSignUp);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class).setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP));
             }
         });
+    }
+
+    private void initializeComponents() {
+        btnSignIn = findViewById(R.id.btSignIn);
+        btnSignUp = findViewById(R.id.btnSignUp);
     }
 }

@@ -1,10 +1,13 @@
-package com.vfguille.inventory;
+package com.vfguille.inventory.ui.dash.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.vfguille.inventory.ui.dash.login.LoginActivity;
+import com.vfguille.inventory.R;
 
 public class SplashActivity extends AppCompatActivity {
     private static final long WAIT_TIME = 1000;
@@ -21,14 +24,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        /*Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                    initLogin();
-            }
-        };
-        Thread.start(runnable);*/
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
