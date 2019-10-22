@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_inventory_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeMaterial">
-        <activity android:name=".ui.dash.login.SignUpActivity" android:label="@string/signup">
+        <activity android:name=".ui.dash.login.SignUpActivity" android:label="@string/signup" android:launchMode="singleTask">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.dash.login.LoginActivity" />

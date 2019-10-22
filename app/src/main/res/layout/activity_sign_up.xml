@@ -49,7 +49,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPass1"
+        android:id="@+id/tilPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -63,37 +63,13 @@
         app:layout_constraintTop_toBottomOf="@+id/tilEmail">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiedPass1"
+            android:id="@+id/tiedPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_lock_black_24dp"
             android:drawablePadding="@dimen/padding_10dp"
             android:hint="@string/password"
             android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPass2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:counterEnabled="true"
-        app:counterMaxLength="15"
-        app:errorEnabled="true"
-        app:passwordToggleEnabled="true"
-        app:boxBackgroundColor="@android:color/transparent"
-        app:layout_constraintEnd_toEndOf="@+id/tilPass1"
-        app:layout_constraintStart_toStartOf="@+id/tilPass1"
-        app:layout_constraintTop_toBottomOf="@+id/tilPass1">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiedPass2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_lock_black_24dp"
-            android:inputType="textPassword"
-            android:drawablePadding="@dimen/padding_10dp"
-            android:hint="@string/password" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -107,7 +83,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilPass2"
-        app:layout_constraintVertical_bias="0.32" />
+        app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

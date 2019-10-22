@@ -2,31 +2,32 @@ package com.vfguille.inventory.ui.dash.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.utils.CommonUtils;
 
+import java.util.Objects;
+
 public class SignUpActivity extends AppCompatActivity {
     private Button btSignUp;
     TextInputEditText tietUser;
-    TextInputEditText tietPassword1;
-    TextInputEditText tietPassword2;
+    TextInputEditText tietPassword;
     TextInputEditText tietEmail;
     TextInputLayout tilUser;
-    TextInputLayout tilPassword1;
-    TextInputLayout tilPassword2;
     TextInputLayout tilEmail;
+    TextInputLayout tilPassword;
 
 
     @Override
@@ -35,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initializeComponents();
+        displaySoftKeyboard(tietUser);
         btSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,18 +50,15 @@ public class SignUpActivity extends AppCompatActivity {
 
         tietUser = findViewById(R.id.tiedUser);
         tietEmail = findViewById(R.id.tiedEmail);
-        tietPassword1 = findViewById(R.id.tiedPass1);
-        tietPassword2 = findViewById(R.id.tiedPass2);
+        tietPassword = findViewById(R.id.tiedPass);
 
         tilUser = findViewById(R.id.tilUser);
         tilEmail = findViewById(R.id.tilEmail);
-        tilPassword1 = findViewById(R.id.tilPass1);
-        tilPassword2 = findViewById(R.id.tilPass2);
-
+        tilPassword = findViewById(R.id.tilPassword);
 
         tietUser.addTextChangedListener(new SignUpWatcher(tietUser));
-        tietUser.addTextChangedListener(new SignUpWatcher(tietUser));
-        tietUser.addTextChangedListener(new SignUpWatcher(tietUser));
+        tietEmail.addTextChangedListener(new SignUpWatcher(tietEmail));
+        tietPassword.addTextChangedListener(new SignUpWatcher(tietPassword));
     }
 
     /**
@@ -69,11 +68,9 @@ public class SignUpActivity extends AppCompatActivity {
         //1. Se guarda el usuario en la BD
         //2. Envío correo al usuario (Firebase)
         //3. Se pasa a la ventana Login
-        if (validateUser(tietUser.getText().toString()) && validatePassword(tietPassword1.getText().toString(),
-                tietPassword2.getText().toString()) && validateEmail(tietEmail.getText().toString())) {
-            startActivity(new Intent(SignUpActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP));
-            finish();
+        if (validateUser(tietUser.getText().toString()) && validateEmail(tietEmail.getText().toString()) && validatePassword(tietPassword.getText().toString())) {
             Toast.makeText(this, "SignUp successfull", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 
@@ -83,7 +80,14 @@ public class SignUpActivity extends AppCompatActivity {
      * @return
      */
     private boolean validateEmail(String email) {
-        return !email.isEmpty();
+        if (!email.isEmpty()){
+            tilEmail.setError(null);
+            return true;
+        }else{
+            tilEmail.setError(getString(R.string.errEmail));
+            displaySoftKeyboard(tietEmail);
+            return false;
+        }
     }
 
     /**
@@ -91,9 +95,15 @@ public class SignUpActivity extends AppCompatActivity {
      *
      * @return
      */
-    private boolean validatePassword(String password1, String password2) {
-        return CommonUtils.checkPasswordLength(password1) && CommonUtils.checkEqualsPasswords(password1, password2)
-                && CommonUtils.regexpPasswordsValidation(password1);
+    private boolean validatePassword(String password) {
+        if (CommonUtils.checkPasswordLength(password) && CommonUtils.regexpPasswordsValidation(password)){
+            tilPassword.setError(null);
+            return true;
+        }else{
+            tilPassword.setError(getString(R.string.errPassword));
+            displaySoftKeyboard(tietPassword);
+            return false;
+        }
     }
 
     /**
@@ -104,9 +114,22 @@ public class SignUpActivity extends AppCompatActivity {
     private boolean validateUser(String user) {
         if (user.length() < 4){
             tilUser.setError(getString(R.string.errUserEmpty));
+            displaySoftKeyboard(tietUser);
             return false;
-        }else
+        }else {
+            tilUser.setError(null);
             return true;
+        }
+    }
+
+    /**
+     * Este método habilita el teclado y el foco en la vista
+     * @param view
+     */
+    private void displaySoftKeyboard(View view){
+        if  (view.requestFocus()) {
+            ((InputMethodManager) Objects.requireNonNull(getSystemService(Context.INPUT_METHOD_SERVICE))).showSoftInput(view, 0);
+        }
     }
 
     private class SignUpWatcher implements TextWatcher{
@@ -129,11 +152,18 @@ public class SignUpActivity extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable editable) {
             switch (view.getId()){
-                case R.id.edUser:
+                case R.id.tiedUser:
                     validateUser(((TextInputEditText)view).getText().toString());
                     break;
-
+                case R.id.tiedPass:
+                    validatePassword(((TextInputEditText)view).getText().toString());
+                    break;
+                case R.id.tiedEmail:
+                    validateEmail(((TextInputEditText)view).getText().toString());
+                    break;
             }
         }
+
+
     }
 }
