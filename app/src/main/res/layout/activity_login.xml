@@ -81,7 +81,9 @@
             android:layout_weight="1"
             android:fontFamily="@font/productsansbold"
             android:text="@string/signup" />
+
     </LinearLayout>
+
 
     <Button
         android:id="@+id/btSignIn"
