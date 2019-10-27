@@ -14,7 +14,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.dash.login.LoginActivity" />
         </activity>
-        <activity android:name=".ui.dash.dash.DashBoardActivity" />
+        <activity android:name=".ui.dash.dash.DashBoardActivity" android:theme="@style/AppThemeMaterialNoActionBar" />
         <activity
             android:name=".ui.dash.login.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
