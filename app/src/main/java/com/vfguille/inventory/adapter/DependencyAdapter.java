@@ -10,8 +10,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.vfguille.inventory.R;
+import com.vfguille.inventory.data.model.Dependency;
+import com.vfguille.inventory.data.repository.DependencyRepository;
+
+import java.util.ArrayList;
 
 public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.ViewHolder> {
+    private ArrayList<Dependency> depencyList;
+    private OnDependencyClickListener onDependencyClickListener;
+
+    public DependencyAdapter(){
+        depencyList = (ArrayList<Dependency>) DependencyRepository.getInstance().getList();
+    }
+
     @NonNull
     @Override
     public DependencyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -21,12 +32,23 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull DependencyAdapter.ViewHolder holder, int position) {
+        holder.icon.setLetter(depencyList.get(position).getName().substring(0, 1));
+        holder.tvName.setText(depencyList.get(position).getName());
+        if (onDependencyClickListener != null)
+            holder.bind(position, onDependencyClickListener);
+    }
 
+    public void setOnDependencyClickListener(OnDependencyClickListener onDependencyClickListener){
+        this.onDependencyClickListener = onDependencyClickListener;
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return depencyList.size();
+    }
+
+    public interface OnDependencyClickListener {
+        void onClick(Dependency dependency);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -37,6 +59,15 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
             super(itemView);
             icon = itemView.findViewById(R.id.ivIcon);
             tvName = itemView.findViewById(R.id.tvName);
+        }
+
+        public void bind(final int position, final OnDependencyClickListener onDependencyClickListener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onDependencyClickListener.onClick(depencyList.get(position));
+                }
+            });
         }
     }
 }

@@ -1,14 +1,15 @@
 package com.vfguille.inventory.data.model;
 
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 
 public class Dependency {
     String name;
     String shortName;
     String description;
-    Drawable image;
+    String image;
 
-    public Dependency(String name, String shortName, String description, Drawable image) {
+    public Dependency(String name, String shortName, String description, String image) {
         this.name = name;
         this.shortName = shortName;
         this.description = description;
@@ -40,11 +41,11 @@ public class Dependency {
     }
 
 
-    public Drawable getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Drawable image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
