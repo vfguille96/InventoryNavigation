@@ -19,6 +19,7 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
     private ArrayList<Dependency> depencyList;
     private OnDependencyClickListener onDependencyClickListener;
 
+    // Los datos se obtienen desde el repository.
     public DependencyAdapter(){
         depencyList = (ArrayList<Dependency>) DependencyRepository.getInstance().getList();
     }
@@ -32,7 +33,7 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull DependencyAdapter.ViewHolder holder, int position) {
-        holder.icon.setLetter(depencyList.get(position).getName().substring(0, 1));
+        holder.icon.setLetter(depencyList.get(position).getName());
         holder.tvName.setText(depencyList.get(position).getName());
         if (onDependencyClickListener != null)
             holder.bind(position, onDependencyClickListener);
@@ -51,17 +52,17 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
         void onClick(Dependency dependency);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder{
         MaterialLetterIcon icon;
         TextView tvName;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             icon = itemView.findViewById(R.id.ivIcon);
             tvName = itemView.findViewById(R.id.tvName);
         }
 
-        public void bind(final int position, final OnDependencyClickListener onDependencyClickListener) {
+        void bind(final int position, final OnDependencyClickListener onDependencyClickListener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

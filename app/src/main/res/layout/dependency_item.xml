@@ -21,7 +21,10 @@
         style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_16dp"
-        android:text="@string/name" />
+        android:layout_marginTop="@dimen/padding_16dp"
+        android:layout_marginRight="@dimen/padding_16dp"
+        android:fontFamily="@font/productsansregular"
+        android:text="@string/name"
+        android:textSize="14sp" />
 
 </LinearLayout>

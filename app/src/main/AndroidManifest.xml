@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_inventory_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeMaterial">
-        <activity android:name=".ui.dash.dash.dependencies.DependenciesListActivity"></activity>
+        <activity android:name=".ui.dash.dash.dependencies.DependenciesListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.dash.dash.DashBoardActivity" />
+        </activity>
         <activity
             android:name=".ui.dash.login.SignUpActivity"
             android:label="@string/signup"

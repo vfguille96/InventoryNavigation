@@ -1,9 +1,11 @@
 package com.vfguille.inventory.ui.dash.dash.dependencies;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -16,15 +18,19 @@ public class DependenciesListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DependencyAdapter dependencyAdapter;
     private DependencyAdapter.OnDependencyClickListener onDependencyClickListener;
+    private final int SPAN_COUNT = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dependencies_list);
-        View view;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         recyclerView = findViewById(R.id.rvDependencies);
         dependencyAdapter = new DependencyAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, SPAN_COUNT);
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(dependencyAdapter);
         initializaListener();
     }
