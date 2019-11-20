@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dash.dash.dependencies.DependenciesActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDependencies"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:fabAlignmentMode="center"
+        app:navigationIcon="@drawable/ic_menu_black_24dp"
+        android:layout_gravity="bottom" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:tint="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_anchor="@id/bottomAppBar"
+        app:srcCompat="@drawable/ic_add_white_24dp"
+        android:focusable="true" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
