@@ -21,7 +21,7 @@ import com.vfguille.inventory.R;
 import com.vfguille.inventory.adapter.DependencyAdapter;
 import com.vfguille.inventory.data.model.Dependency;
 
-public class DependenciesActivity extends AppCompatActivity implements DependenciesListFragment.OnAddDependencyListener{
+public class DependenciesActivity extends AppCompatActivity implements DependenciesListFragment.OnAddDependencyListener, DependencyAddFragment.OnFragmentInteractionListener{
     private DependenciesListFragment dependenciesListFragment;
     private DependencyAddFragment dependencyAddFragment;
 
@@ -53,12 +53,16 @@ public class DependenciesActivity extends AppCompatActivity implements Dependenc
     private void showAddFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         dependencyAddFragment = (DependencyAddFragment) fragmentManager.findFragmentByTag(DependencyAddFragment.TAG);
-        if (dependencyAddFragment == null){
+        if (dependencyAddFragment == null)
             dependencyAddFragment = (DependencyAddFragment) DependencyAddFragment.onNewInstance(null);
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentManager.beginTransaction().replace(android.R.id.content, dependencyAddFragment, DependenciesListFragment.TAG);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-        }
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(android.R.id.content, dependencyAddFragment, DependencyAddFragment.TAG);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onFragmentInteraction() {
+
     }
 }

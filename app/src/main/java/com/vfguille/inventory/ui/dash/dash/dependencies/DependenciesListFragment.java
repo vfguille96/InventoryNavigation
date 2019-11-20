@@ -37,7 +37,6 @@ public class DependenciesListFragment extends Fragment {
     BottomAppBar bottomAppBar;
 
 
-
     public static Fragment onNewInstance(Bundle bundle){
         DependenciesListFragment fragment = new DependenciesListFragment();
         if (bundle != null)
@@ -66,7 +65,6 @@ public class DependenciesListFragment extends Fragment {
         }catch (Exception e){
             throw e;
         }
-
     }
 
     @Override
