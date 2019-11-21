@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.vfguille.inventory.R;
+import com.vfguille.inventory.data.model.Dependency;
 
 
 public class DependencyManageFragment extends Fragment {
@@ -49,10 +50,14 @@ public class DependencyManageFragment extends Fragment {
         edName = view.findViewById(R.id.edName);
         edShortName = view.findViewById(R.id.edShortName);
 
-        Bundle bundle = new Bundle(getArguments());
+        Bundle bundle = getArguments();
 
         if (bundle != null){
-            // TODO: Impl.
+            Dependency dependency = bundle.getParcelable(Dependency.TAG);
+
+            edShortName.setText(dependency.getShortName());
+            edName.setText(dependency.getName());
+            edDescription.setText(dependency.getDescription());
         }
     }
 

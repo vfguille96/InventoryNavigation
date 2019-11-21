@@ -64,6 +64,7 @@ public class DependenciesActivity extends AppCompatActivity implements Dependenc
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(android.R.id.content, dependencyManageFragment, DependencyManageFragment.TAG)
+                .addToBackStack(null)
                 .commit();
     }
 }
