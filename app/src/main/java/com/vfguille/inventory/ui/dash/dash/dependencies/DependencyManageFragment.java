@@ -1,22 +1,28 @@
 package com.vfguille.inventory.ui.dash.dash.dependencies;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.vfguille.inventory.R;
 
 
-public class DependencyAddFragment extends Fragment {
+public class DependencyManageFragment extends Fragment {
 
     public static final String TAG = "dependencyAddFragment";
     private OnFragmentInteractionListener listener;
+    private EditText edShortName;
+    private EditText edName;
+    private EditText edDescription;
+
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction();
@@ -24,7 +30,7 @@ public class DependencyAddFragment extends Fragment {
 
 
     public static Fragment onNewInstance(Bundle bundle) {
-        DependencyAddFragment fragment = new DependencyAddFragment();
+        DependencyManageFragment fragment = new DependencyManageFragment();
         if (bundle!=null) {
             fragment.setArguments(bundle);
         }
@@ -33,7 +39,21 @@ public class DependencyAddFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        edDescription = view.findViewById(R.id.edDescription);
+        edName = view.findViewById(R.id.edName);
+        edShortName = view.findViewById(R.id.edShortName);
+
+        Bundle bundle = new Bundle(getArguments());
+
+        if (bundle != null){
+            // TODO: Impl.
+        }
     }
 
     @Override

@@ -1,4 +1,11 @@
 <resources>
+    <!-- ARRAY -->
+    <string-array name="inventory">
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+    </string-array>
+
     <string name="app_name">Inventory</string>
     <string name="user">Username / email</string>
     <string name="password">Password</string>
@@ -18,4 +25,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="shortname">Shortname</string>
+    <string name="description">Description</string>
 </resources>

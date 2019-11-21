@@ -17,7 +17,13 @@ import java.util.ArrayList;
 
 public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.ViewHolder> {
     private ArrayList<Dependency> depencyList;
-    private OnDependencyClickListener onDependencyClickListener;
+    //private OnDependencyClickListener onDependencyClickListener;
+    private OnManageDependencyListener onManageDependencyListener;
+
+    public interface OnManageDependencyListener{
+        void onEditDependency(Dependency dependency);
+        void onDeleteDependency(Dependency dependency);
+    }
 
     // Los datos se obtienen desde el repository.
     public DependencyAdapter(){
@@ -35,12 +41,17 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
     public void onBindViewHolder(@NonNull DependencyAdapter.ViewHolder holder, int position) {
         holder.icon.setLetter(depencyList.get(position).getName());
         holder.tvName.setText(depencyList.get(position).getName());
-        if (onDependencyClickListener != null)
-            holder.bind(position, onDependencyClickListener);
+        /*if (onDependencyClickListener != null)
+            holder.bind(position, onDependencyClickListener);*/
+        holder.bind(depencyList.get(position), onManageDependencyListener);
     }
 
-    public void setOnDependencyClickListener(OnDependencyClickListener onDependencyClickListener){
+    /*public void setOnDependencyClickListener(OnDependencyClickListener onDependencyClickListener){
         this.onDependencyClickListener = onDependencyClickListener;
+    }*/
+
+    public void setOnManageDependencyClickListener(OnManageDependencyListener onManageDependencyClickListener){
+        this.onManageDependencyListener = onManageDependencyClickListener;
     }
 
     @Override
@@ -62,13 +73,32 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
             tvName = itemView.findViewById(R.id.tvName);
         }
 
-        void bind(final int position, final OnDependencyClickListener onDependencyClickListener) {
+        /*void bind(final int position, final OnDependencyClickListener onDependencyClickListener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onDependencyClickListener.onClick(depencyList.get(position));
                 }
             });
+        }*/
+
+        void bind(final Dependency dependency, final OnManageDependencyListener listener){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onEditDependency(dependency);
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    listener.onDeleteDependency(dependency);
+                    return true;
+                }
+            });
         }
+
+
     }
 }

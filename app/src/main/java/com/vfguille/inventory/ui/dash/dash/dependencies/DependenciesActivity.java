@@ -1,36 +1,24 @@
 package com.vfguille.inventory.ui.dash.dash.dependencies;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vfguille.inventory.R;
-import com.vfguille.inventory.adapter.DependencyAdapter;
 import com.vfguille.inventory.data.model.Dependency;
 
-public class DependenciesActivity extends AppCompatActivity implements DependenciesListFragment.OnAddDependencyListener, DependencyAddFragment.OnFragmentInteractionListener{
+public class DependenciesActivity extends AppCompatActivity implements DependenciesListFragment.OnManageDependencyListener,
+        DependencyManageFragment.OnFragmentInteractionListener {
     private DependenciesListFragment dependenciesListFragment;
-    private DependencyAddFragment dependencyAddFragment;
+    private DependencyManageFragment dependencyManageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dependencies);
         showListFragment();
-
     }
 
     /**
@@ -39,24 +27,19 @@ public class DependenciesActivity extends AppCompatActivity implements Dependenc
     private void showListFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         dependenciesListFragment = (DependenciesListFragment) fragmentManager.findFragmentByTag(DependenciesListFragment.TAG);
-        if (dependenciesListFragment == null){
+        if (dependenciesListFragment == null)
             dependenciesListFragment = (DependenciesListFragment) DependenciesListFragment.onNewInstance(null);
-            fragmentManager.beginTransaction().add(android.R.id.content, dependenciesListFragment, DependenciesListFragment.TAG).commit();
-        }
-    }
+        fragmentManager.beginTransaction().add(android.R.id.content, dependenciesListFragment, DependenciesListFragment.TAG).commit();
 
-    @Override
-    public void onAddDependency() {
-        showAddFragment();
     }
 
     private void showAddFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        dependencyAddFragment = (DependencyAddFragment) fragmentManager.findFragmentByTag(DependencyAddFragment.TAG);
-        if (dependencyAddFragment == null)
-            dependencyAddFragment = (DependencyAddFragment) DependencyAddFragment.onNewInstance(null);
+        dependencyManageFragment = (DependencyManageFragment) fragmentManager.findFragmentByTag(DependencyManageFragment.TAG);
+        if (dependencyManageFragment == null)
+            dependencyManageFragment = (DependencyManageFragment) DependencyManageFragment.onNewInstance(null);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(android.R.id.content, dependencyAddFragment, DependencyAddFragment.TAG);
+        fragmentTransaction.replace(android.R.id.content, dependencyManageFragment, DependencyManageFragment.TAG);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -64,5 +47,23 @@ public class DependenciesActivity extends AppCompatActivity implements Dependenc
     @Override
     public void onFragmentInteraction() {
 
+    }
+
+    @Override
+    public void onManageDependency(Dependency dependency) {
+        Bundle b = null;
+        dependencyManageFragment = (DependencyManageFragment) getSupportFragmentManager().findFragmentByTag(DependencyManageFragment.TAG);
+        if (dependencyManageFragment == null) {
+            if (dependency != null) {
+                b = new Bundle();
+                b.putParcelable(Dependency.TAG, dependency);
+            }
+            dependencyManageFragment = (DependencyManageFragment) DependencyManageFragment.onNewInstance(b);
+        }
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(android.R.id.content, dependencyManageFragment, DependencyManageFragment.TAG)
+                .commit();
     }
 }
