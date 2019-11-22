@@ -4,6 +4,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/android.R.id.content"
-    tools:context=".ui.dash.dash.dependencies.DependenciesActivity">
+    tools:context=".ui.dash.dash.dependencies.DependencyActivity">
 
 </FrameLayout>

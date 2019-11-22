@@ -19,7 +19,7 @@ import com.vfguille.inventory.R;
 import com.vfguille.inventory.adapter.DependencyAdapter;
 import com.vfguille.inventory.data.model.Dependency;
 
-public class DependenciesListFragment extends Fragment {
+public class DependencyListFragment extends Fragment {
 
     /**
      * Comunica al listener que se ha pulsado el botón add.
@@ -45,7 +45,7 @@ public class DependenciesListFragment extends Fragment {
 
 
     public static Fragment onNewInstance(Bundle bundle) {
-        DependenciesListFragment fragment = new DependenciesListFragment();
+        DependencyListFragment fragment = new DependencyListFragment();
         if (bundle != null)
             fragment.setArguments(bundle);
         return fragment;

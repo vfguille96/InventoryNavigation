@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Objects;
+
 public class Dependency implements Parcelable {
     public static final String TAG = "dependency";
     String name;
@@ -12,6 +14,9 @@ public class Dependency implements Parcelable {
     String description;
     String inventory;
     String image;
+
+    public Dependency() {
+    }
 
     public Dependency(String name, String shortName, String description, String inventory, String image) {
         this.name = name;
@@ -99,5 +104,18 @@ public class Dependency implements Parcelable {
         parcel.writeString(description);
         parcel.writeString(inventory);
         parcel.writeString(image);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dependency that = (Dependency) o;
+        return shortName.equals(that.shortName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(shortName);
     }
 }

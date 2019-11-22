@@ -3,4 +3,6 @@
     <string name="errUserEmpty">User empty</string>
     <string name="errPassword">Password invalid</string>
     <string name="errEmail">Email empty</string>
+    <string name="errNameEmpty">ERROR: Nombre vacío.</string>
+    <string name="errShortNameEmpty">ERROR: Nombre corto vacío.</string>
 </resources>

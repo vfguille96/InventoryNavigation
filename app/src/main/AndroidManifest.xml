@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeMaterial">
         <activity
-            android:name=".ui.dash.dash.dependencies.DependenciesActivity"
+            android:name=".ui.dash.dash.dependencies.DependencyActivity"
             android:theme="@style/AppThemeMaterialNoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
