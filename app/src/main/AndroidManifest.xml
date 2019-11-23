@@ -10,28 +10,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeMaterial">
         <activity
-            android:name=".ui.dash.dash.dependencies.DependencyActivity"
-            android:theme="@style/AppThemeMaterialNoActionBar">
+            android:name=".ui.dash.dependencies.DependencyActivity"
+            android:theme="@style/AppThemeMaterialNoActionBar"
+            android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.dash.dash.DashBoardActivity" />
+                android:value=".ui.dash.DashBoardActivity" />
         </activity>
         <activity
-            android:name=".ui.dash.login.SignUpActivity"
+            android:name=".ui.login.SignUpActivity"
             android:label="@string/signup"
             android:launchMode="singleTask">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.dash.login.LoginActivity" />
+                android:value=".ui.login.LoginActivity" />
         </activity>
         <activity
-            android:name=".ui.dash.dash.DashBoardActivity"
+            android:name=".ui.dash.DashBoardActivity"
             android:theme="@style/AppThemeMaterialNoActionBar" />
         <activity
-            android:name=".ui.dash.login.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ui.dash.splash.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

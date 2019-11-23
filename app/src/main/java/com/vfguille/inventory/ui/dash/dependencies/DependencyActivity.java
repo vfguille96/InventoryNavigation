@@ -1,8 +1,7 @@
-package com.vfguille.inventory.ui.dash.dash.dependencies;
+package com.vfguille.inventory.ui.dash.dependencies;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
@@ -34,7 +33,7 @@ public class DependencyActivity extends AppCompatActivity implements DependencyL
         fragmentManager.beginTransaction().add(android.R.id.content, dependencyListFragment, DependencyListFragment.TAG).commit();
 
     }
-
+/*
     private void showAddFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         dependencyManageFragment = (DependencyManageFragment) fragmentManager.findFragmentByTag(DependencyManageFragment.TAG);
@@ -44,7 +43,7 @@ public class DependencyActivity extends AppCompatActivity implements DependencyL
         fragmentTransaction.replace(android.R.id.content, dependencyManageFragment, DependencyManageFragment.TAG);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-    }
+    }*/
 
     @Override
     public void onFragmentInteraction() {

@@ -1,4 +1,4 @@
-package com.vfguille.inventory.ui.dash.dash.dependencies;
+package com.vfguille.inventory.ui.dash.dependencies;
 
 import com.vfguille.inventory.data.model.Dependency;
 import com.vfguille.inventory.data.repository.DependencyRepository;

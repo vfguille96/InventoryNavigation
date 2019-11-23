@@ -1,4 +1,4 @@
-package com.vfguille.inventory.ui.dash.login;
+package com.vfguille.inventory.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.vfguille.inventory.ui.dash.dash.DashBoardActivity;
+import com.vfguille.inventory.ui.dash.DashBoardActivity;
 import com.vfguille.inventory.R;
 
 public class LoginActivity extends AppCompatActivity {

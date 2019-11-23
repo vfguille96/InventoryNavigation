@@ -1,4 +1,4 @@
-package com.vfguille.inventory.ui.dash.dash;
+package com.vfguille.inventory.ui.dash;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vfguille.inventory.R;
-import com.vfguille.inventory.ui.dash.dash.dependencies.DependencyActivity;
+import com.vfguille.inventory.ui.dash.dependencies.DependencyActivity;
 
 public class DashBoardActivity extends AppCompatActivity{
     FloatingActionButton floatingActionButton;

@@ -1,4 +1,4 @@
-package com.vfguille.inventory.ui.dash.splash;
+package com.vfguille.inventory.ui.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.vfguille.inventory.ui.dash.login.LoginActivity;
+import com.vfguille.inventory.ui.login.LoginActivity;
 import com.vfguille.inventory.R;
 
 public class SplashActivity extends AppCompatActivity {

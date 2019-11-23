@@ -1,4 +1,4 @@
-package com.vfguille.inventory.ui.dash.dash.dependencies;
+package com.vfguille.inventory.ui.dash.dependencies;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -38,11 +38,6 @@ public class DependencyListFragment extends Fragment {
     private final int SPAN_COUNT = 2;
     FloatingActionButton floatingActionButton;
     BottomAppBar bottomAppBar;
-
-
-
-
-
 
     public static Fragment onNewInstance(Bundle bundle) {
         DependencyListFragment fragment = new DependencyListFragment();
