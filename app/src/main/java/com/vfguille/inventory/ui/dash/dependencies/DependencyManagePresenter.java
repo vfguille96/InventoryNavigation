@@ -1,5 +1,6 @@
 package com.vfguille.inventory.ui.dash.dependencies;
 
+import com.vfguille.inventory.R;
 import com.vfguille.inventory.data.model.Dependency;
 import com.vfguille.inventory.data.repository.DependencyRepository;
 
@@ -24,14 +25,18 @@ public class DependencyManagePresenter implements DependencyManageContract.Prese
 
     @Override
     public void add(Dependency dependency) {
-        DependencyRepository.getInstance().add(dependency);
-        view.onSuccess();
+        if (DependencyRepository.getInstance().add(dependency))
+            view.onSuccess();
+        else
+            view.showError(R.string.err_add_dependency);
     }
 
     @Override
     public void edit(Dependency dependency) {
-        DependencyRepository.getInstance().edit(dependency);
-        view.onSuccess();
+
+        if (DependencyRepository.getInstance().edit(dependency))
+            view.onSuccess();
+        else
+            view.showError(R.string.err_edit_dependency);
     }
 }
-

@@ -11,6 +11,7 @@ public interface DependencyManageContract {
 
     interface View extends BaseView<Presenter> {
         void onSuccessValidate();
+
     }
 
     interface Presenter {

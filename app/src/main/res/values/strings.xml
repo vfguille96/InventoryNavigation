@@ -28,4 +28,6 @@
     <string name="shortname">Shortname</string>
     <string name="description">Description</string>
     <string name="errDescriptionEmpty">ERROR: Descripción vacía.</string>
+    <string name="err_add_dependency">ERROR: Ya existe una dependencia igual.</string>
+    <string name="err_edit_dependency">ERROR: No se ha poidido editar la dependencia.</string>
 </resources>

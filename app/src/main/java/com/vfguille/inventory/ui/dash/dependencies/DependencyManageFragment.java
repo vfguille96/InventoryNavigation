@@ -50,6 +50,11 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
         getActivity().onBackPressed();
     }
 
+    @Override
+    public void showError(int errAddDependency) {
+        Toast.makeText(getContext(), getString(errAddDependency), Toast.LENGTH_LONG).show();
+    }
+
     /**
      * Es llamado desde el Presenter después de comprobar que la dependencia es correcta.
      */

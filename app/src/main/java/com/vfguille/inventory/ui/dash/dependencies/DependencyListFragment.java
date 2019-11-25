@@ -110,6 +110,13 @@ public class DependencyListFragment extends Fragment {
 
         // 4- Vincula la vista al modelo.
         recyclerView.setAdapter(dependencyAdapter);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dependencyAdapter.notifyDataSetChanged();
     }
 
     /**

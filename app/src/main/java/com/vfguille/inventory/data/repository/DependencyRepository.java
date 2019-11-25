@@ -3,16 +3,17 @@ package com.vfguille.inventory.data.repository;
 import com.vfguille.inventory.data.model.Dependency;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class DependencyRepository {
     private static DependencyRepository dependencyRepository;
-    private List<Dependency> list;
+    private ArrayList<Dependency> list;
 
-    // Se inicializan en el bloque static las propiedades de la clase. Se evita comprobar si es null.
-    static {
-        dependencyRepository = new DependencyRepository();
-    }
+//    // Se inicializan en el bloque static las propiedades de la clase. Se evita comprobar si es null.
+//    static {
+//        dependencyRepository = new DependencyRepository();
+//    }
 
     // Constructor privado porque sólo existe un objeto Repository.
     private DependencyRepository() {
@@ -21,6 +22,9 @@ public class DependencyRepository {
     }
 
     public static DependencyRepository getInstance() {
+        if (dependencyRepository == null) {
+            dependencyRepository = new DependencyRepository();
+        }
         return dependencyRepository;
     }
 
@@ -38,14 +42,30 @@ public class DependencyRepository {
 
     }
 
-    public List<Dependency> getList() {
+    public ArrayList<Dependency> getList() {
         return this.list;
     }
 
-    public void add(Dependency dependency) {
-
+    public boolean add(Dependency dependency) {
+        if (!list.contains(dependency)){
+            list.add(dependency);
+            return true;
+        }else
+            return false;
     }
 
-    public void edit(Dependency dependency) {
+    public boolean edit(Dependency dependency) {
+        try {
+            for (Dependency dependencyIt : list) {
+                if (dependencyIt.getShortName().equals(dependency.getShortName())) {
+                    dependencyIt.setName(dependency.getName());
+                    dependencyIt.setDescription(dependency.getDescription());
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

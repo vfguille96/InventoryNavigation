@@ -27,8 +27,9 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
 
     // Los datos se obtienen desde el repository.
     public DependencyAdapter(){
-        depencyList = (ArrayList<Dependency>) DependencyRepository.getInstance().getList();
+        depencyList = DependencyRepository.getInstance().getList();
     }
+
 
     @NonNull
     @Override
