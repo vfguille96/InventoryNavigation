@@ -68,4 +68,15 @@ public class DependencyRepository {
             return false;
         }
     }
+
+    public boolean delete(Dependency dependency){
+        Iterator<Dependency> dependencyIterator = list.iterator();
+        while (dependencyIterator.hasNext()){
+            if (dependencyIterator.next().equals(dependency)) {
+                dependencyIterator.remove();
+                return false;
+            }
+        }
+        return false;
+    }
 }

@@ -8,8 +8,9 @@ import android.os.Bundle;
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.data.model.Dependency;
 
-public class DependencyActivity extends AppCompatActivity implements DependencyListFragment.OnManageDependencyListener,
-        DependencyManageFragment.OnFragmentInteractionListener {
+public class DependencyActivity extends AppCompatActivity implements
+        DependencyListFragment.OnManageDependencyListener{
+
     private DependencyListFragment dependencyListFragment;
     private DependencyManageFragment dependencyManageFragment;
     private DependencyManagePresenter dependencyManagePresenter;
@@ -32,6 +33,9 @@ public class DependencyActivity extends AppCompatActivity implements DependencyL
             dependencyListFragment = (DependencyListFragment) DependencyListFragment.onNewInstance(null);
         fragmentManager.beginTransaction().add(android.R.id.content, dependencyListFragment, DependencyListFragment.TAG).commit();
 
+        // Depués de crear la vista, se crea el Presenter (inicialización del contrato).
+       // dependencyListFragment = new DependencyListPresenter(dependencyListFragment);
+       // dependencyListFragment.setPresenter(dependencyManagePresenter);
     }
 /*
     private void showAddFragment() {
@@ -44,11 +48,6 @@ public class DependencyActivity extends AppCompatActivity implements DependencyL
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }*/
-
-    @Override
-    public void onFragmentInteraction() {
-
-    }
 
     @Override
     public void onManageDependency(Dependency dependency) {
@@ -66,7 +65,10 @@ public class DependencyActivity extends AppCompatActivity implements DependencyL
         dependencyManagePresenter = new DependencyManagePresenter(dependencyManageFragment);
         dependencyManageFragment.setPresenter(dependencyManagePresenter);
 
-        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, dependencyManageFragment, DependencyManageFragment.TAG).
-                addToBackStack(null).commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(android.R.id.content, dependencyManageFragment, DependencyManageFragment.TAG)
+                .addToBackStack(null)
+                .commit();
     }
 }

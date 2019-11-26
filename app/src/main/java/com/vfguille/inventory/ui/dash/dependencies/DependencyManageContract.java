@@ -11,7 +11,6 @@ public interface DependencyManageContract {
 
     interface View extends BaseView<Presenter> {
         void onSuccessValidate();
-
     }
 
     interface Presenter {
@@ -20,5 +19,7 @@ public interface DependencyManageContract {
         void add(Dependency dependency);
 
         void edit(Dependency dependency);
+
+        void delete(Dependency dependency);
     }
 }

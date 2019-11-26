@@ -39,4 +39,12 @@ public class DependencyManagePresenter implements DependencyManageContract.Prese
         else
             view.showError(R.string.err_edit_dependency);
     }
+
+    @Override
+    public void delete(Dependency dependency) {
+        if (DependencyRepository.getInstance().delete(dependency))
+            view.onSuccess();
+        else
+            view.showError(R.string.err_delete_dependency);
+    }
 }

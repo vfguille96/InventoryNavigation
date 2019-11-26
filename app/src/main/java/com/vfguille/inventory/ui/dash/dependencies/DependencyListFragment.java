@@ -1,6 +1,8 @@
 package com.vfguille.inventory.ui.dash.dependencies;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +21,9 @@ import com.vfguille.inventory.R;
 import com.vfguille.inventory.adapter.DependencyAdapter;
 import com.vfguille.inventory.data.model.Dependency;
 
-public class DependencyListFragment extends Fragment {
+import java.util.List;
+
+public class DependencyListFragment extends Fragment implements DependencyListContract.View{
 
     /**
      * Comunica al listener que se ha pulsado el botón add.
@@ -31,9 +35,11 @@ public class DependencyListFragment extends Fragment {
     public static final String TAG = "dependenciesListFragment";
     private RecyclerView recyclerView;
     private DependencyAdapter dependencyAdapter;
+
     // Objeto-Delegado que sirve de comunicación con la clase Activity.
     private DependencyAdapter.OnManageDependencyListener onManageDependencyAdapterListener;
     private OnManageDependencyListener onManageDependencyListener;
+    private  DependencyListContract.Presenter presenter;
 
     private final int SPAN_COUNT = 2;
     FloatingActionButton floatingActionButton;
@@ -83,6 +89,8 @@ public class DependencyListFragment extends Fragment {
         initializeFab(view);
     }
 
+
+
     private void initializeFab(@NonNull View view) {
         floatingActionButton = view.findViewById(R.id.floatingActionButton);
         bottomAppBar = view.findViewById(R.id.bottomAppBar);
@@ -119,6 +127,51 @@ public class DependencyListFragment extends Fragment {
         dependencyAdapter.notifyDataSetChanged();
     }
 
+    // ------------------------------------------------------------------------------------------------
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void showNoData() {
+
+    }
+
+    @Override
+    public void showData(List<Dependency> dependencyList) {
+
+    }
+
+    @Override
+    public void setPresenter(DependencyListContract.Presenter presenter) {
+        this.presenter = presenter;
+    }
+
+    @Override
+    public void showError(String error) {
+
+    }
+
+    @Override
+    public void onSuccess() {
+
+    }
+
+    @Override
+    public void showError(int errAddDependency) {
+
+    }
+
+    //-------------------------------------------------------------------------------------------------
+
+
+
     /**
      * Método que inicializa el listener que escucha los eventos del Adapter.
      */
@@ -140,8 +193,19 @@ public class DependencyListFragment extends Fragment {
              * @param dependency
              */
             @Override
-            public void onDeleteDependency(Dependency dependency) {
-                Toast.makeText(getActivity(), "Se ha pulsado la dependencia: " + dependency.getShortName(), Toast.LENGTH_LONG).show();
+            public void onDeleteDependency(final Dependency dependency) {
+                //Toast.makeText(getActivity(), "Se ha pulsado la dependencia: " + dependency.getShortName(), Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.delete_dependency)
+                        .setMessage(getString(R.string.delete_body) + " " + dependency.getShortName())
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null)
+                        .show();
             }
         };
     }
