@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.data.model.Dependency;
 
@@ -38,7 +39,11 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
 
     @Override
     public void showError(String error) {
-        Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
+        Snackbar.make(floatingActionButton, error, Snackbar.LENGTH_LONG)
+                .setTextColor(getContext().getColor(R.color.colorPrimary))
+                .setAnchorView(floatingActionButton)
+                .show();
     }
 
     /**
@@ -51,7 +56,12 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
 
     @Override
     public void showError(int errAddDependency) {
-        Toast.makeText(getContext(), getString(errAddDependency), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getContext(), getString(errAddDependency), Toast.LENGTH_LONG).show();
+        Snackbar.make(floatingActionButton, errAddDependency, Snackbar.LENGTH_LONG)
+                .setTextColor(getContext().getColor(R.color.colorPrimary))
+                .setAnchorView(floatingActionButton)
+                .show();
+
     }
 
     /**
@@ -142,13 +152,13 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
      */
     private boolean isDependencyValid() {
         // RN1: campos no vacíos
-        if (TextUtils.isEmpty(edName.getText().toString())) {
-            showError(getString(R.string.errNameEmpty));
+        if (TextUtils.isEmpty(edShortName.getText().toString())) {
+            showError(getString(R.string.errShortNameEmpty));
             return false;
         }
 
-        if (TextUtils.isEmpty(edShortName.getText().toString())) {
-            showError(getString(R.string.errShortNameEmpty));
+        if (TextUtils.isEmpty(edName.getText().toString())) {
+            showError(getString(R.string.errNameEmpty));
             return false;
         }
 

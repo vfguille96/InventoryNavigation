@@ -27,7 +27,6 @@ public class SignUpActivity extends AppCompatActivity {
     TextInputLayout tilEmail;
     TextInputLayout tilPassword;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,10 +77,10 @@ public class SignUpActivity extends AppCompatActivity {
      * @return
      */
     private boolean validateEmail(String email) {
-        if (!email.isEmpty()){
+        if (!email.isEmpty()) {
             tilEmail.setError(null);
             return true;
-        }else{
+        } else {
             tilEmail.setError(getString(R.string.errEmail));
             displaySoftKeyboard(tietEmail);
             return false;
@@ -94,10 +93,10 @@ public class SignUpActivity extends AppCompatActivity {
      * @return
      */
     private boolean validatePassword(String password) {
-        if (CommonUtils.checkPasswordLength(password) && CommonUtils.regexpPasswordsValidation(password)){
+        if (CommonUtils.checkPasswordLength(password) && CommonUtils.regexpPasswordsValidation(password)) {
             tilPassword.setError(null);
             return true;
-        }else{
+        } else {
             tilPassword.setError(getString(R.string.errPassword));
             displaySoftKeyboard(tietPassword);
             return false;
@@ -110,11 +109,11 @@ public class SignUpActivity extends AppCompatActivity {
      * @return
      */
     private boolean validateUser(String user) {
-        if (user.length() < 4){
+        if (user.length() < 4) {
             tilUser.setError(getString(R.string.errUserEmpty));
             displaySoftKeyboard(tietUser);
             return false;
-        }else {
+        } else {
             tilUser.setError(null);
             return true;
         }
@@ -122,18 +121,20 @@ public class SignUpActivity extends AppCompatActivity {
 
     /**
      * Este método habilita el teclado y el foco en la vista
+     *
      * @param view
      */
-    private void displaySoftKeyboard(View view){
-        if  (view.requestFocus()) {
+    private void displaySoftKeyboard(View view) {
+        if (view.requestFocus()) {
             ((InputMethodManager) Objects.requireNonNull(getSystemService(Context.INPUT_METHOD_SERVICE))).showSoftInput(view, 0);
         }
     }
 
-    private class SignUpWatcher implements TextWatcher{
+    private class SignUpWatcher implements TextWatcher {
 
         private View view;
-        public SignUpWatcher (View view){
+
+        public SignUpWatcher(View view) {
             this.view = view;
         }
 
@@ -149,19 +150,17 @@ public class SignUpActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            switch (view.getId()){
+            switch (view.getId()) {
                 case R.id.tiedUser:
-                    validateUser(((TextInputEditText)view).getText().toString());
+                    validateUser(((TextInputEditText) view).getText().toString());
                     break;
                 case R.id.tiedPass:
-                    validatePassword(((TextInputEditText)view).getText().toString());
+                    validatePassword(((TextInputEditText) view).getText().toString());
                     break;
                 case R.id.tiedEmail:
-                    validateEmail(((TextInputEditText)view).getText().toString());
+                    validateEmail(((TextInputEditText) view).getText().toString());
                     break;
             }
         }
-
-
     }
 }

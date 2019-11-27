@@ -1,6 +1,5 @@
 package com.vfguille.inventory.ui.dash.dependencies;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
