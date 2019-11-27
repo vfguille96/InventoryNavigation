@@ -23,7 +23,6 @@ import com.vfguille.inventory.data.model.Dependency;
 public class DependencyManageFragment extends Fragment implements DependencyManageContract.View {
 
     public static final String TAG = "dependencyAddFragment";
-    private OnFragmentInteractionListener listener;
     private EditText edShortName;
     private EditText edName;
     private EditText edDescription;
@@ -67,11 +66,6 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
             dependencyManagePresenter.add(dependency);
     }
     // ---
-
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction();
-    }
 
 
     public static Fragment onNewInstance(Bundle bundle) {
@@ -162,7 +156,6 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
             showError(getString(R.string.errDescriptionEmpty));
             return false;
         }
-
         return true;
     }
 
@@ -174,17 +167,10 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            listener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        listener = null;
     }
 }

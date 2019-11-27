@@ -14,10 +14,11 @@ import com.vfguille.inventory.data.model.Dependency;
 import com.vfguille.inventory.data.repository.DependencyRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.ViewHolder> {
-    private ArrayList<Dependency> depencyList;
-    //private OnDependencyClickListener onDependencyClickListener;
+    private ArrayList<Dependency> list;
+    private OnDependencyClickListener onDependencyClickListener;
     private OnManageDependencyListener onManageDependencyListener;
 
     public interface OnManageDependencyListener{
@@ -27,8 +28,14 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
 
     // Los datos se obtienen desde el repository.
     public DependencyAdapter(){
-        //depencyList = DependencyRepository.getInstance().getList();
-        depencyList = new ArrayList<>();
+        //list = DependencyRepository.getInstance().getList();
+        list = new ArrayList<>();
+    }
+
+    public DependencyAdapter(OnManageDependencyListener listener){
+        list = DependencyRepository.getInstance().getList();
+        onManageDependencyListener = listener;
+
     }
 
 
@@ -41,11 +48,11 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull DependencyAdapter.ViewHolder holder, int position) {
-        holder.icon.setLetter(depencyList.get(position).getName());
-        holder.tvName.setText(depencyList.get(position).getName());
+        holder.icon.setLetter(list.get(position).getName());
+        holder.tvName.setText(list.get(position).getName());
         /*if (onDependencyClickListener != null)
             holder.bind(position, onDependencyClickListener);*/
-        holder.bind(depencyList.get(position), onManageDependencyListener);
+        holder.bind(list.get(position), onManageDependencyListener);
     }
 
     /*public void setOnDependencyClickListener(OnDependencyClickListener onDependencyClickListener){
@@ -58,11 +65,20 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return depencyList.size();
+        return list.size();
     }
 
     public interface OnDependencyClickListener {
         void onClick(Dependency dependency);
+    }
+
+    public void clear() {
+        list.clear();
+    }
+
+    public void load(List<Dependency> dependencyList) {
+        list.addAll(dependencyList);
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
@@ -79,7 +95,7 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onDependencyClickListener.onClick(depencyList.get(position));
+                    onDependencyClickListener.onClick(list.get(position));
                 }
             });
         }*/

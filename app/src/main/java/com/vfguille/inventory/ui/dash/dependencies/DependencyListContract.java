@@ -9,7 +9,9 @@ public interface DependencyListContract {
     interface View extends BaseView<Presenter> {
         void showProgress();
         void hideProgress();
-        void showNoData();
+        void hideImageNoData();
+        void showImageNoData();
+        boolean isVisibleImgNoData();
         void showData(List<Dependency> dependencyList);
     }
 

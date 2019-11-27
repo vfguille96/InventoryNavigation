@@ -14,6 +14,7 @@ public class DependencyActivity extends AppCompatActivity implements
     private DependencyListFragment dependencyListFragment;
     private DependencyManageFragment dependencyManageFragment;
     private DependencyManagePresenter dependencyManagePresenter;
+    private DependencyListPresenter dependencyListPresenter;
 
 
     @Override
@@ -34,8 +35,8 @@ public class DependencyActivity extends AppCompatActivity implements
         fragmentManager.beginTransaction().add(android.R.id.content, dependencyListFragment, DependencyListFragment.TAG).commit();
 
         // Depués de crear la vista, se crea el Presenter (inicialización del contrato).
-       // dependencyListFragment = new DependencyListPresenter(dependencyListFragment);
-       // dependencyListFragment.setPresenter(dependencyManagePresenter);
+        dependencyListPresenter = new DependencyListPresenter(dependencyListFragment);
+        dependencyListFragment.setPresenter(dependencyListPresenter);
     }
 /*
     private void showAddFragment() {
