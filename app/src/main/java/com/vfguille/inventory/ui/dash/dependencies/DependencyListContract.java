@@ -11,10 +11,10 @@ public interface DependencyListContract {
         void hideProgress();
         void hideImageNoData();
         void showImageNoData();
-        void onSuccessDeleted(Dependency dependency);
+        void onSuccessDeleted();
         boolean isVisibleImgNoData();
         void showData(List<Dependency> dependencyList);
-
+        void onSuccessUndo(Dependency dependency);
     }
 
     interface Presenter{

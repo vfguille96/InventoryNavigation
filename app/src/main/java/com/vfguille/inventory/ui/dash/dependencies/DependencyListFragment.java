@@ -45,6 +45,7 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     private OnManageDependencyListener onManageDependencyListener;
     private DependencyListContract.Presenter presenter;
     private Dependency deleted;
+    private Dependency undoDeleted;
 
     private final int SPAN_COUNT = 2;
     FloatingActionButton floatingActionButton;
@@ -144,7 +145,6 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
         deleted = dependency;
     }
 
-
     /**
      * Es llamado cuando el usuario pulsa aceptar en el cuadro de diálogo. Se elimina la dependencia almacenada.
      */
@@ -155,9 +155,7 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
 
     private void dependencyDelete() {
         presenter.delete(deleted);
-        deleted = null;
     }
-
 
     @Override
     public void onStart() {
@@ -168,7 +166,6 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     @Override
     public void onResume() {
         super.onResume();
-
         presenter.load();
     }
 
@@ -211,6 +208,12 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     }
 
     @Override
+    public void onSuccessUndo(Dependency dependency) {
+        dependencyAdapter.add(dependency);
+        dependencyAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void setPresenter(DependencyListContract.Presenter presenter) {
         this.presenter = presenter;
     }
@@ -245,20 +248,20 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     public void onSuccessDeleted() {
         dependencyAdapter.delete(deleted);
         dependencyAdapter.notifyDataSetChanged();
-        showSnackbarDeleted();
+        undoDeleted = deleted;
         deleted = null;
 
+        showSnackbarDeleted();
     }
 
     private void showSnackbarDeleted() {
-        final Dependency undoDependency = deleted;
-        Snackbar.make(getActivity().findViewById(android.R.id.content), getString(R.string.action_delete) + deleted.getName(), Snackbar.LENGTH_LONG)
+        Snackbar.make(floatingActionButton, getString(R.string.action_delete) + " " + undoDeleted.getShortName(), Snackbar.LENGTH_LONG)
                 .setAnchorView(floatingActionButton).setAction(getString(R.string.undo), new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                undoDeleted(undoDependency);
+                undoDeleted(undoDeleted);
             }
-        }).show();
+        }).setActionTextColor(getResources().getColor(R.color.colorPrimary, null)).show();
     }
 
     private void undoDeleted(Dependency dependency) {
@@ -301,18 +304,6 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
             @Override
             public void onDeleteDependency(final Dependency dependency) {
                 showDeleteDialog(dependency);
-                /*new MaterialAlertDialogBuilder(getContext())
-                        .setTitle(R.string.delete_dependency)
-                        .setMessage(getString(R.string.delete_body) + " " + dependency.getShortName())
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                presenter.delete(dependency);
-                                presenter.load();
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, null)
-                        .show();*/
             }
         };
     }

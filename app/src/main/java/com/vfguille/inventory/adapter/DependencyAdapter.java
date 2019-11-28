@@ -21,10 +21,6 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
     private OnDependencyClickListener onDependencyClickListener;
     private OnManageDependencyListener onManageDependencyListener;
 
-    public void delete(Dependency deleted) {
-        list.remove(deleted);
-    }
-
     public interface OnManageDependencyListener{
         void onEditDependency(Dependency dependency);
         void onDeleteDependency(Dependency dependency);
@@ -83,6 +79,14 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
     public void load(List<Dependency> dependencyList) {
         list.addAll(dependencyList);
         notifyDataSetChanged();
+    }
+
+    public void delete(Dependency deleted) {
+        list.remove(deleted);
+    }
+
+    public void add(Dependency undoDeleted) {
+        list.add(undoDeleted);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

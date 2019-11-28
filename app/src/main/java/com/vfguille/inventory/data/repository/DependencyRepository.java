@@ -65,7 +65,7 @@ public class DependencyRepository {
         while (dependencyIterator.hasNext()){
             if (dependencyIterator.next().equals(dependency)) {
                 dependencyIterator.remove();
-                return false;
+                return true;
             }
         }
         return false;
