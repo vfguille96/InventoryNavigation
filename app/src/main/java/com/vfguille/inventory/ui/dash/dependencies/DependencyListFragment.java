@@ -17,13 +17,17 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.adapter.DependencyAdapter;
 import com.vfguille.inventory.data.model.Dependency;
+import com.vfguille.inventory.ui.base.BaseDialogFragment;
 
 import java.util.List;
 
-public class DependencyListFragment extends Fragment implements DependencyListContract.View {
+public class DependencyListFragment extends Fragment implements DependencyListContract.View, BaseDialogFragment.OnFinishDialogListener {
+
+    private static final int REQUEST_CODE_DELETE = 300;
 
     /**
      * Comunica al listener que se ha pulsado el botón add.
@@ -40,6 +44,7 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     private DependencyAdapter.OnManageDependencyListener onManageDependencyAdapterListener;
     private OnManageDependencyListener onManageDependencyListener;
     private DependencyListContract.Presenter presenter;
+    private Dependency deleted;
 
     private final int SPAN_COUNT = 2;
     FloatingActionButton floatingActionButton;
@@ -129,6 +134,31 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
         recyclerView.setAdapter(dependencyAdapter);
     }
 
+    private void showDeleteDialog(Dependency dependency) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BaseDialogFragment.TITLE, getString(R.string.delete_dependency));
+        bundle.putString(BaseDialogFragment.MESSAGE, getString(R.string.delete_body) + " " + dependency.getShortName());
+        BaseDialogFragment baseDialogFragment = BaseDialogFragment.newInstance(bundle);
+        baseDialogFragment.setTargetFragment(DependencyListFragment.this, REQUEST_CODE_DELETE);
+        baseDialogFragment.show(getFragmentManager(), BaseDialogFragment.TAG);
+        deleted = dependency;
+    }
+
+
+    /**
+     * Es llamado cuando el usuario pulsa aceptar en el cuadro de diálogo. Se elimina la dependencia almacenada.
+     */
+    @Override
+    public void onFinishDialog() {
+        dependencyDelete();
+    }
+
+    private void dependencyDelete() {
+        presenter.delete(deleted);
+        deleted = null;
+    }
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -138,6 +168,7 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     @Override
     public void onResume() {
         super.onResume();
+
         presenter.load();
     }
 
@@ -207,6 +238,33 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
         recyclerView.setVisibility(View.GONE);
     }
 
+    /**
+     * Se ejecuta cuando se ha eliminado un dato en el Repository
+     */
+    @Override
+    public void onSuccessDeleted() {
+        dependencyAdapter.delete(deleted);
+        dependencyAdapter.notifyDataSetChanged();
+        showSnackbarDeleted();
+        deleted = null;
+
+    }
+
+    private void showSnackbarDeleted() {
+        final Dependency undoDependency = deleted;
+        Snackbar.make(getActivity().findViewById(android.R.id.content), getString(R.string.action_delete) + deleted.getName(), Snackbar.LENGTH_LONG)
+                .setAnchorView(floatingActionButton).setAction(getString(R.string.undo), new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                undoDeleted(undoDependency);
+            }
+        }).show();
+    }
+
+    private void undoDeleted(Dependency dependency) {
+        presenter.undo(dependency);
+    }
+
     @Override
     public void onSuccess() {
 
@@ -242,7 +300,8 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
              */
             @Override
             public void onDeleteDependency(final Dependency dependency) {
-                new MaterialAlertDialogBuilder(getContext())
+                showDeleteDialog(dependency);
+                /*new MaterialAlertDialogBuilder(getContext())
                         .setTitle(R.string.delete_dependency)
                         .setMessage(getString(R.string.delete_body) + " " + dependency.getShortName())
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -253,7 +312,7 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
                             }
                         })
                         .setNegativeButton(android.R.string.no, null)
-                        .show();
+                        .show();*/
             }
         };
     }

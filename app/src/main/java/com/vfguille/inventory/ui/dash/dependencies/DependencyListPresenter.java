@@ -15,10 +15,20 @@ public class DependencyListPresenter implements DependencyListContract.Presenter
         this.view = view;
     }
 
+    /**
+     * Eliminar no influye en los filtros del presenter.
+     * No influye en el orden
+     * @param dependency
+     */
     @Override
     public void delete(Dependency dependency) {
-        if (DependencyRepository.getInstance().delete(dependency))
-            view.onSuccess();
+        //  1- Realizar operación en el repositorio y comprobar el resultado.
+        if (DependencyRepository.getInstance().delete(dependency)) {
+            //  1.2 Comprobar si no hay datos.
+            if (DependencyRepository.getInstance().getList().isEmpty())
+                view.showImageNoData();
+            view.onSuccessDeleted();
+        }
     }
 
     @Override
@@ -27,6 +37,7 @@ public class DependencyListPresenter implements DependencyListContract.Presenter
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+                checkImageNoDataIsVisible();
                 view.showProgress();
             }
 
@@ -37,8 +48,7 @@ public class DependencyListPresenter implements DependencyListContract.Presenter
                 if (dependencyList.isEmpty())
                     view.showImageNoData();
                 else {
-                    if (!view.isVisibleImgNoData())
-                        view.hideImageNoData();
+                    checkImageNoDataIsVisible();
                     view.showData(dependencyList);
                 }
             }
@@ -58,5 +68,21 @@ public class DependencyListPresenter implements DependencyListContract.Presenter
                 return DependencyRepository.getInstance().getList();
             }
         }.execute();
+    }
+
+    @Override
+    public void undo(Dependency dependency) {
+        if (DependencyRepository.getInstance().add(dependency)){
+            // Hay que actualizar el adapter
+            view.onSuccessUndo(dependency);
+            if (DependencyRepository.getInstance().getList().size() == 1)
+                view.hideImageNoData();
+        }
+
+    }
+
+    private void checkImageNoDataIsVisible() {
+        if (!view.isVisibleImgNoData())
+            view.hideImageNoData();
     }
 }

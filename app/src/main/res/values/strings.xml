@@ -33,4 +33,7 @@
     <string name="delete_dependency">Borrar dependencia</string>
     <string name="delete_body">Borrar la dependencia: </string>
     <string name="err_delete_dependency">ERROR: No se ha podido borrar la dependencia</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="action_delete">Se ha borrado la dependencia</string>
+    <string name="undo">Deshacer</string>
 </resources>

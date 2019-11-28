@@ -21,6 +21,10 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
     private OnDependencyClickListener onDependencyClickListener;
     private OnManageDependencyListener onManageDependencyListener;
 
+    public void delete(Dependency deleted) {
+        list.remove(deleted);
+    }
+
     public interface OnManageDependencyListener{
         void onEditDependency(Dependency dependency);
         void onDeleteDependency(Dependency dependency);
