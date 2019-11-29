@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_inventory_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeMaterial">
+        <activity android:name=".ui.dash.sections.SectionActivity"></activity>
         <activity
             android:name=".ui.dash.dependencies.DependencyActivity"
             android:theme="@style/AppThemeMaterialNoActionBar"

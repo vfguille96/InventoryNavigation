@@ -8,14 +8,12 @@ import android.os.Bundle;
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.data.model.Dependency;
 
-public class DependencyActivity extends AppCompatActivity implements
-        DependencyListFragment.OnManageDependencyListener{
+public class DependencyActivity extends AppCompatActivity implements DependencyListFragment.OnManageDependencyListener{
 
     private DependencyListFragment dependencyListFragment;
     private DependencyManageFragment dependencyManageFragment;
     private DependencyManagePresenter dependencyManagePresenter;
     private DependencyListPresenter dependencyListPresenter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +28,10 @@ public class DependencyActivity extends AppCompatActivity implements
     private void showListFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         dependencyListFragment = (DependencyListFragment) fragmentManager.findFragmentByTag(DependencyListFragment.TAG);
-        if (dependencyListFragment == null)
+        if (dependencyListFragment == null) {
             dependencyListFragment = (DependencyListFragment) DependencyListFragment.onNewInstance(null);
-        fragmentManager.beginTransaction().add(android.R.id.content, dependencyListFragment, DependencyListFragment.TAG).commit();
+            fragmentManager.beginTransaction().add(android.R.id.content, dependencyListFragment, DependencyListFragment.TAG).commit();
+        }
 
         // Depués de crear la vista, se crea el Presenter (inicialización del contrato).
         dependencyListPresenter = new DependencyListPresenter(dependencyListFragment);

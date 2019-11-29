@@ -27,8 +27,6 @@ import java.util.List;
 
 public class DependencyListFragment extends Fragment implements DependencyListContract.View, BaseDialogFragment.OnFinishDialogListener {
 
-    private static final int REQUEST_CODE_DELETE = 300;
-
     /**
      * Comunica al listener que se ha pulsado el botón add.
      */
@@ -36,7 +34,9 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
         void onManageDependency(Dependency dependency);
     }
 
+    private static final int REQUEST_CODE_DELETE = 300;
     public static final String TAG = "dependenciesListFragment";
+    private final int SPAN_COUNT = 2;
     private RecyclerView recyclerView;
     private DependencyAdapter dependencyAdapter;
 
@@ -47,7 +47,6 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     private Dependency deleted;
     private Dependency undoDeleted;
 
-    private final int SPAN_COUNT = 2;
     FloatingActionButton floatingActionButton;
     BottomAppBar bottomAppBar;
     LottieAnimationView lottieAnimationView;
@@ -160,7 +159,6 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     @Override
     public void onStart() {
         super.onStart();
-
     }
 
     @Override

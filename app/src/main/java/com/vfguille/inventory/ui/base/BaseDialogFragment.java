@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.vfguille.inventory.R;
 
 public class BaseDialogFragment extends DialogFragment {
     public static final String TITLE = "title";
@@ -21,7 +20,6 @@ public class BaseDialogFragment extends DialogFragment {
     public interface OnFinishDialogListener {
         void onFinishDialog();
     }
-
 
     public static BaseDialogFragment newInstance(Bundle bundle) {
         BaseDialogFragment dialogFragment = new BaseDialogFragment();
@@ -42,8 +40,8 @@ public class BaseDialogFragment extends DialogFragment {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        OnFinishDialogListener listener = (OnFinishDialogListener) getTargetFragment();
-                        listener.onFinishDialog();
+                        OnFinishDialogListener onFinishDialogListener = (OnFinishDialogListener) getTargetFragment();
+                        onFinishDialogListener.onFinishDialog();
                     }
                 });
         materialAlertDialogBuilder.setNegativeButton(getString(android.R.string.no),
