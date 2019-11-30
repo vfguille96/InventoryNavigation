@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <com.github.ivbaranov.mli.MaterialLetterIcon
+    <ImageView
         android:id="@+id/ivIconSection"
         android:layout_width="@dimen/letter_icon_size"
         android:layout_height="@dimen/letter_icon_size"

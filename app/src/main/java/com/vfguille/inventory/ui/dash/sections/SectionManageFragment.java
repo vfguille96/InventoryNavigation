@@ -1,12 +1,7 @@
-package com.vfguille.inventory.ui.dash.dependencies;
+package com.vfguille.inventory.ui.dash.sections;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +9,17 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.vfguille.inventory.R;
-import com.vfguille.inventory.data.model.Dependency;
+import com.vfguille.inventory.data.model.Section;
 
 
-public class DependencyManageFragment extends Fragment implements DependencyManageContract.View {
+public class SectionManageFragment extends Fragment implements SectionManageContract.View {
 
     public static final String TAG = "dependencyAddFragment";
     private EditText edShortName;
@@ -28,57 +27,50 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
     private EditText edDescription;
     private FloatingActionButton floatingActionButton;
     private Spinner spInventory;
-    private DependencyManageContract.Presenter dependencyManagePresenter;
+    private SectionManageContract.Presenter sectionManagePresenter;
 
     // Métodos del contrato SectionManageContract
     @Override
-    public void setPresenter(DependencyManageContract.Presenter presenter) {
-        this.dependencyManagePresenter = presenter;
+    public void setPresenter(SectionManageContract.Presenter presenter) {
+        this.sectionManagePresenter = presenter;
     }
 
     @Override
     public void showError(String error) {
-        //Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
         Snackbar.make(floatingActionButton, error, Snackbar.LENGTH_LONG)
                 .setTextColor(getContext().getColor(R.color.colorPrimary))
                 .setAnchorView(floatingActionButton)
                 .show();
     }
 
-    /**
-     * Es llamado desde el Presenter después de realizar una de las acciones de add/edit y se muestra la lista.
-     */
     @Override
     public void onSuccess() {
         getActivity().onBackPressed();
     }
 
     @Override
-    public void showError(int errAddDependency) {
-        //Toast.makeText(getContext(), getString(errAddDependency), Toast.LENGTH_LONG).show();
-        Snackbar.make(floatingActionButton, errAddDependency, Snackbar.LENGTH_LONG)
+    public void showError(int errAddSection) {
+        Snackbar.make(floatingActionButton, errAddSection, Snackbar.LENGTH_LONG)
                 .setTextColor(getContext().getColor(R.color.colorPrimary))
                 .setAnchorView(floatingActionButton)
                 .show();
 
     }
 
-    /**
-     * Es llamado desde el Presenter después de comprobar que la dependencia es correcta.
-     */
+
     @Override
     public void onSuccessValidate() {
-        Dependency dependency = getDependency();
+        Section section = getSection();
         if (getArguments() != null)
-            dependencyManagePresenter.edit(dependency);
+            sectionManagePresenter.edit(section);
         else
-            dependencyManagePresenter.add(dependency);
+            sectionManagePresenter.add(section);
     }
     // ---
 
 
     public static Fragment onNewInstance(Bundle bundle) {
-        DependencyManageFragment fragment = new DependencyManageFragment();
+        SectionManageFragment fragment = new SectionManageFragment();
         if (bundle != null)
             fragment.setArguments(bundle);
         return fragment;
@@ -110,11 +102,11 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
     }
 
     private void setDependencyInView(Bundle bundle) {
-        Dependency dependency = bundle.getParcelable(Dependency.TAG);
+        Section section = bundle.getParcelable(Section.TAG);
         edShortName.setEnabled(false);
-        edShortName.setText(dependency.getShortName());
-        edName.setText(dependency.getName());
-        edDescription.setText(dependency.getDescription());
+        edShortName.setText(section.getShortName());
+        edName.setText(section.getName());
+        edDescription.setText(section.getDescription());
     }
 
 
@@ -126,23 +118,18 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
             @Override
             public void onClick(View view) {
                 if (isDependencyValid())
-                    dependencyManagePresenter.validateDependency(getDependency());
+                    sectionManagePresenter.validateDependency(getSection());
             }
         });
     }
 
-    /**
-     * Recoge los datos de la vista y se crea una Dependencia.
-     *
-     * @return
-     */
-    private Dependency getDependency() {
-        Dependency dependency = new Dependency();
-        dependency.setName(edName.getText().toString());
-        dependency.setShortName(edShortName.getText().toString());
-        dependency.setInventory(spInventory.getSelectedItem().toString());
-        dependency.setDescription(edDescription.getText().toString());
-        return dependency;
+    private Section getSection() {
+        Section section = new Section();
+        section.setName(edName.getText().toString());
+        section.setShortName(edShortName.getText().toString());
+        section.setDependency(spInventory.getSelectedItem().toString());
+        section.setDescription(edDescription.getText().toString());
+        return section;
     }
 
     /**

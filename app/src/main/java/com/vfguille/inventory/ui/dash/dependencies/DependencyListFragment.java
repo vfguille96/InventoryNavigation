@@ -1,7 +1,6 @@
 package com.vfguille.inventory.ui.dash.dependencies;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.vfguille.inventory.R;
@@ -47,11 +45,11 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     private Dependency deleted;
     private Dependency undoDeleted;
 
-    FloatingActionButton floatingActionButton;
+    private FloatingActionButton floatingActionButton;
     BottomAppBar bottomAppBar;
-    LottieAnimationView lottieAnimationView;
-    LottieAnimationView skele1;
-    LottieAnimationView skele2;
+    private LottieAnimationView lottieAnimationView;
+    private LottieAnimationView skele1;
+    private LottieAnimationView skele2;
 
     public static Fragment onNewInstance(Bundle bundle) {
         DependencyListFragment fragment = new DependencyListFragment();
@@ -92,7 +90,6 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.rvDependencies);
         initRvDependency(view);
         initializeAnimations(view);
         initializeFab(view);
@@ -105,10 +102,9 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
         lottieAnimationView.setVisibility(View.GONE);
     }
 
-
     private void initializeFab(@NonNull View view) {
-        floatingActionButton = view.findViewById(R.id.floatingActionButton);
-        bottomAppBar = view.findViewById(R.id.bottomAppBar);
+        floatingActionButton = view.findViewById(R.id.fabSection);
+        bottomAppBar = view.findViewById(R.id.babSection);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +114,7 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     }
 
     private void initRvDependency(@NonNull View view) {
+        recyclerView = view.findViewById(R.id.rvDependencies);
         // 1- Inicializar el listener del adapter.
         initializeListenerAdapter(onManageDependencyListener);
 
@@ -195,7 +192,6 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
 
     /**
      * Actualiza el adapter para mostrar los datos.
-     *
      * @param dependencyList
      */
     @Override
@@ -216,14 +212,8 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
         this.presenter = presenter;
     }
 
-    @Override
-    public void showError(String error) {
-
-    }
-
     /**
      * Comprueba si hay datos en el fragment.
-     *
      * @return
      */
     @Override
@@ -266,18 +256,7 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
         presenter.undo(dependency);
     }
 
-    @Override
-    public void onSuccess() {
-
-    }
-
-    @Override
-    public void showError(int errAddDependency) {
-
-    }
-
     //-------------------------------------------------------------------------------------------------
-
 
     /**
      * Método que inicializa el listener que escucha los eventos del Adapter.
@@ -286,7 +265,7 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
         onManageDependencyAdapterListener = new DependencyAdapter.OnManageDependencyListener() {
 
             /**
-             * Se ha pulsado sobre un elemento de la lista y hay que mostrar el fragment DependencyManageFragment. Se llama al método de la Activity
+             * Se ha pulsado sobre un elemento de la lista y hay que mostrar el fragment SectionManageFragment. Se llama al método de la Activity
              * para mostrar el fragment.
              * @param dependency
              */

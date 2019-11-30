@@ -40,11 +40,11 @@ public class DependencyActivity extends AppCompatActivity implements DependencyL
 /*
     private void showAddFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        dependencyManageFragment = (DependencyManageFragment) fragmentManager.findFragmentByTag(DependencyManageFragment.TAG);
+        dependencyManageFragment = (SectionManageFragment) fragmentManager.findFragmentByTag(SectionManageFragment.TAG);
         if (dependencyManageFragment == null)
-            dependencyManageFragment = (DependencyManageFragment) DependencyManageFragment.onNewInstance(null);
+            dependencyManageFragment = (SectionManageFragment) SectionManageFragment.onNewInstance(null);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(android.R.id.content, dependencyManageFragment, DependencyManageFragment.TAG);
+        fragmentTransaction.replace(android.R.id.content, dependencyManageFragment, SectionManageFragment.TAG);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }*/

@@ -18,7 +18,6 @@ import java.util.List;
 
 public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.ViewHolder> {
     private ArrayList<Dependency> list;
-    private OnDependencyClickListener onDependencyClickListener;
     private OnManageDependencyListener onManageDependencyListener;
 
     public interface OnManageDependencyListener{
@@ -26,18 +25,15 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
         void onDeleteDependency(Dependency dependency);
     }
 
-    // Los datos se obtienen desde el repository.
     public DependencyAdapter(){
-        //list = DependencyRepository.getInstance().getList();
         list = new ArrayList<>();
     }
 
+    // Los datos se obtienen desde el repository.
     public DependencyAdapter(OnManageDependencyListener listener){
         list = DependencyRepository.getInstance().getList();
         onManageDependencyListener = listener;
-
     }
-
 
     @NonNull
     @Override
@@ -50,14 +46,8 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
     public void onBindViewHolder(@NonNull DependencyAdapter.ViewHolder holder, int position) {
         holder.icon.setLetter(list.get(position).getName());
         holder.tvName.setText(list.get(position).getName());
-        /*if (onDependencyClickListener != null)
-            holder.bind(position, onDependencyClickListener);*/
         holder.bind(list.get(position), onManageDependencyListener);
     }
-
-    /*public void setOnDependencyClickListener(OnDependencyClickListener onDependencyClickListener){
-        this.onDependencyClickListener = onDependencyClickListener;
-    }*/
 
     public void setOnManageDependencyClickListener(OnManageDependencyListener onManageDependencyClickListener){
         this.onManageDependencyListener = onManageDependencyClickListener;
@@ -66,10 +56,6 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
     @Override
     public int getItemCount() {
         return list.size();
-    }
-
-    public interface OnDependencyClickListener {
-        void onClick(Dependency dependency);
     }
 
     public void clear() {
@@ -95,18 +81,9 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            icon = itemView.findViewById(R.id.ivIcon);
+            icon = itemView.findViewById(R.id.ivIconSection);
             tvName = itemView.findViewById(R.id.tvName);
         }
-
-        /*void bind(final int position, final OnDependencyClickListener onDependencyClickListener) {
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onDependencyClickListener.onClick(list.get(position));
-                }
-            });
-        }*/
 
         void bind(final Dependency dependency, final OnManageDependencyListener listener){
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +101,5 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
                 }
             });
         }
-
-
     }
 }

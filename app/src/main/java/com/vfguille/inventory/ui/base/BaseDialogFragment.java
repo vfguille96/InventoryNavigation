@@ -44,13 +44,7 @@ public class BaseDialogFragment extends DialogFragment {
                         onFinishDialogListener.onFinishDialog();
                     }
                 });
-        materialAlertDialogBuilder.setNegativeButton(getString(android.R.string.no),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
+        materialAlertDialogBuilder.setNegativeButton(getString(android.R.string.no), null);
         return materialAlertDialogBuilder.create();
     }
 }
