@@ -18,7 +18,7 @@ public class DependencyActivity extends AppCompatActivity implements DependencyL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dependencies);
+        setContentView(R.layout.activity_dependency);
         showListFragment();
     }
 

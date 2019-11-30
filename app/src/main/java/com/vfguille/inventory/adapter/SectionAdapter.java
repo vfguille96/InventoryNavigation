@@ -49,7 +49,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvName.setText(list.get(position).getName());
-        Glide.with(context).load(list.get(position).getImage()).apply(RequestOptions.circleCropTransform()).into(holder.icon);
+        Glide.with(holder.itemView.getContext()).load(list.get(position).getImage()).apply(RequestOptions.circleCropTransform()).into(holder.icon);
         holder.bind(list.get(position), onManageSectionListener);
     }
 

@@ -46,11 +46,6 @@ public class SectionListPresenter implements SectionListContract.Presenter{
             }
 
             @Override
-            protected void onProgressUpdate(Void... values) {
-                super.onProgressUpdate(values);
-            }
-
-            @Override
             protected List<Section> doInBackground(Void... voids) {
                 try {
                     Thread.sleep(1000);

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.dash.sections.SectionActivity">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/fragmentSection"
         android:name="com.vfguille.inventory.ui.dash.sections.SectionListFragment"
         android:layout_width="match_parent"

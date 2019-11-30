@@ -6,6 +6,12 @@
         <item>2020</item>
     </string-array>
 
+    <string-array name="repository">
+        <item>1CFGS</item>
+        <item>2CFGS</item>
+        <item>3ESO</item>
+    </string-array>
+
     <string name="app_name">Inventory</string>
     <string name="user">Username / email</string>
     <string name="password">Password</string>
@@ -43,4 +49,5 @@
 
     <string name="undo">Deshacer</string>
     <string name="delete_section">Borrar sección</string>
+    <string name="repository">Repositorio</string>
 </resources>

@@ -21,12 +21,12 @@ import com.vfguille.inventory.data.model.Section;
 
 public class SectionManageFragment extends Fragment implements SectionManageContract.View {
 
-    public static final String TAG = "sectionAddFragment";
+    public static final String TAG = "sectionManageFragment";
     private EditText edShortName;
     private EditText edName;
     private EditText edDescription;
     private FloatingActionButton floatingActionButton;
-    private Spinner spInventory;
+    private Spinner spRepository;
     private SectionManageContract.Presenter sectionManagePresenter;
 
     // Métodos del contrato SectionManageContract
@@ -54,7 +54,6 @@ public class SectionManageFragment extends Fragment implements SectionManageCont
                 .setTextColor(getContext().getColor(R.color.colorPrimary))
                 .setAnchorView(floatingActionButton)
                 .show();
-
     }
 
 
@@ -86,22 +85,21 @@ public class SectionManageFragment extends Fragment implements SectionManageCont
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializeViewElements(view);
-        initializeFab();
+        setFab(floatingActionButton);
 
         Bundle bundle = getArguments();
         if (bundle != null)
-            setDependencyInView(bundle);
+            setSectionInView(bundle);
     }
 
     private void initializeViewElements(@NonNull View view) {
         edDescription = view.findViewById(R.id.edDescription);
         edName = view.findViewById(R.id.edName);
         edShortName = view.findViewById(R.id.edShortName);
-        spInventory = view.findViewById(R.id.spInventory);
-        floatingActionButton = view.findViewById(R.id.fabSection);
+        spRepository = view.findViewById(R.id.spInventory);
     }
 
-    private void setDependencyInView(Bundle bundle) {
+    private void setSectionInView(Bundle bundle) {
         Section section = bundle.getParcelable(Section.TAG);
         edShortName.setEnabled(false);
         edShortName.setText(section.getShortName());
@@ -110,24 +108,11 @@ public class SectionManageFragment extends Fragment implements SectionManageCont
     }
 
 
-    /**
-     * Valida la dependencia. Añade o edita.
-     */
-    private void initializeFab() {
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isSectionValid())
-                    sectionManagePresenter.validateSection(getSection());
-            }
-        });
-    }
-
     private Section getSection() {
         Section section = new Section();
         section.setName(edName.getText().toString());
         section.setShortName(edShortName.getText().toString());
-        section.setDependency(spInventory.getSelectedItem().toString());
+        section.setDependency(spRepository.getSelectedItem().toString());
         section.setDescription(edDescription.getText().toString());
         return section;
     }
@@ -167,7 +152,24 @@ public class SectionManageFragment extends Fragment implements SectionManageCont
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    public void setFab(FloatingActionButton floatingActionButton) {
+        this.floatingActionButton = floatingActionButton;
+        this.floatingActionButton.setImageResource(R.drawable.ic_done_black_24dp);
+        this.floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isSectionValid())
+                    sectionManagePresenter.validateSection(getSection());
+            }
+        });
     }
 }

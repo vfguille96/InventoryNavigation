@@ -20,8 +20,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.adapter.SectionAdapter;
 import com.vfguille.inventory.data.model.Section;
-import com.vfguille.inventory.data.repository.DependencyRepository;
-import com.vfguille.inventory.data.repository.SectionRepository;
 import com.vfguille.inventory.ui.base.BaseDialogFragment;
 
 import java.util.List;
@@ -62,9 +60,11 @@ public class SectionListFragment extends Fragment implements SectionListContract
         setRetainInstance(true);
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_section_list, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_section_list, container, false);
+        return view;
     }
 
     @Override
@@ -123,7 +123,7 @@ public class SectionListFragment extends Fragment implements SectionListContract
     private void showDeleteDialog(Section section) {
         Bundle bundle = new Bundle();
         bundle.putString(BaseDialogFragment.TITLE, getString(R.string.delete_section));
-        bundle.putString(BaseDialogFragment.MESSAGE, getString(R.string.delete_body) + " " + section.getShortName());
+        bundle.putString(BaseDialogFragment.MESSAGE, getString(R.string.delete_body_section) + " " + section.getShortName());
         BaseDialogFragment baseDialogFragment = BaseDialogFragment.newInstance(bundle);
         baseDialogFragment.setTargetFragment(SectionListFragment.this, REQUEST_CODE_DELETE);
         baseDialogFragment.show(getFragmentManager(), BaseDialogFragment.TAG);
@@ -150,7 +150,7 @@ public class SectionListFragment extends Fragment implements SectionListContract
     @Override
     public void onResume() {
         super.onResume();
-        this.presenter.load();
+        presenter.load();
     }
 
     // ------------------------------------------------------------------------------------------------
@@ -221,7 +221,7 @@ public class SectionListFragment extends Fragment implements SectionListContract
     }
 
     private void showSnackbarDeleted() {
-        Snackbar.make(floatingActionButton, getString(R.string.action_delete) + " " + undoDeleted.getShortName(), Snackbar.LENGTH_LONG)
+        Snackbar.make(getView(), getString(R.string.action_delete) + " " + undoDeleted.getShortName(), Snackbar.LENGTH_LONG)
                 .setAnchorView(floatingActionButton).setAction(getString(R.string.undo), new View.OnClickListener() {
             @Override
             public void onClick(View view) {

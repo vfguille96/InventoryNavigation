@@ -1,15 +1,15 @@
 package com.vfguille.inventory.ui.dash.sections;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-
-import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.data.model.Section;
 
-public class SectionActivity extends AppCompatActivity implements SectionListFragment.OnManageSectionListener{
+public class SectionActivity extends AppCompatActivity implements SectionListFragment.OnManageSectionListener {
     private SectionListFragment sectionListFragment;
     private FloatingActionButton floatingActionButton;
     private SectionManageFragment sectionManageFragment;
@@ -31,8 +31,8 @@ public class SectionActivity extends AppCompatActivity implements SectionListFra
     private void showSectionFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         sectionListFragment = (SectionListFragment) fragmentManager.findFragmentByTag(SectionListFragment.TAG);
-        if (sectionListFragment == null){
-            sectionListFragment = (SectionListFragment)SectionListFragment.onNewInstance(null);
+        if (sectionListFragment == null) {
+            sectionListFragment = (SectionListFragment) SectionListFragment.onNewInstance(null);
             sectionListFragment.setFab(floatingActionButton);
             fragmentManager.beginTransaction().add(R.id.fragmentSection, sectionListFragment, SectionListFragment.TAG).commit();
         }
@@ -51,15 +51,17 @@ public class SectionActivity extends AppCompatActivity implements SectionListFra
                 b.putParcelable(Section.TAG, section);
             }
             sectionManageFragment = (SectionManageFragment) SectionManageFragment.onNewInstance(b);
+            sectionManageFragment.setFab(floatingActionButton);
         }
 
         // Depués de crear la vista, se crea el Presenter (inicialización del contrato).
         sectionManagePresenter = new SectionManagePresenter(sectionManageFragment);
         sectionManageFragment.setPresenter(sectionManagePresenter);
 
+
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(android.R.id.content, sectionManagePresenter, SectionManageFragment.TAG)
+                .replace(R.id.fragmentSection, sectionManagePresenter, SectionManageFragment.TAG)
                 .addToBackStack(null)
                 .commit();
     }
