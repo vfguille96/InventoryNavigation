@@ -29,12 +29,18 @@
     <string name="description">Description</string>
     <string name="errDescriptionEmpty">ERROR: Descripción vacía.</string>
     <string name="err_add_dependency">ERROR: Ya existe una dependencia igual.</string>
+    <string name="err_add_section">ERROR: Ya existe una sección igual.</string>
     <string name="err_edit_dependency">ERROR: No se ha poidido editar la dependencia.</string>
+    <string name="err_edit_section">ERROR: No se ha poidido editar la sección.</string>
     <string name="delete_dependency">Borrar dependencia</string>
     <string name="delete_body">Borrar la dependencia: </string>
+    <string name="delete_body_section">Borrar la sección: </string>
     <string name="err_delete_dependency">ERROR: No se ha podido borrar la dependencia</string>
+    <string name="err_delete_section">ERROR: No se ha podido borrar la sección</string>
+
     <string name="aceptar">Aceptar</string>
     <string name="action_delete">Se ha borrado la dependencia</string>
+
     <string name="undo">Deshacer</string>
     <string name="delete_section">Borrar sección</string>
 </resources>

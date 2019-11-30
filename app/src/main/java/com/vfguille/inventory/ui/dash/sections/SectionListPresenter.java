@@ -65,7 +65,6 @@ public class SectionListPresenter implements SectionListContract.Presenter{
     @Override
     public void undo(Section section) {
         if (SectionRepository.getInstance().add(section)){
-            // Hay que actualizar el adapter
             view.onSuccessUndo(section);
             if (SectionRepository.getInstance().getList().size() == 1)
                 view.hideImageNoData();

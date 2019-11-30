@@ -20,11 +20,16 @@ import com.google.android.material.snackbar.Snackbar;
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.adapter.SectionAdapter;
 import com.vfguille.inventory.data.model.Section;
+import com.vfguille.inventory.data.repository.DependencyRepository;
+import com.vfguille.inventory.data.repository.SectionRepository;
 import com.vfguille.inventory.ui.base.BaseDialogFragment;
 
 import java.util.List;
 
 public class SectionListFragment extends Fragment implements SectionListContract.View, BaseDialogFragment.OnFinishDialogListener {
+    interface OnManageSectionListener{
+        void onManageSection(Section section);
+    }
 
     public static final String TAG = "sectionListFragment";
     private static final int REQUEST_CODE_DELETE = 300;
@@ -32,7 +37,6 @@ public class SectionListFragment extends Fragment implements SectionListContract
     private RecyclerView recyclerView;
     private SectionAdapter sectionAdapter;
     private FloatingActionButton floatingActionButton;
-    BottomAppBar bottomAppBar;
     private LottieAnimationView lottieAnimationView;
     private LottieAnimationView skele1;
     private LottieAnimationView skele2;
@@ -43,14 +47,9 @@ public class SectionListFragment extends Fragment implements SectionListContract
     private Section deleted;
     private Section undoDeleted;
 
-    interface OnManageSectionListener{
-        void onManageSection(Section section);
-    }
-    public SectionListFragment() {
-        // Required empty public constructor
-    }
 
-    public static Fragment newInstance(Bundle bundle) {
+
+    public static Fragment onNewInstance(Bundle bundle) {
         SectionListFragment fragment = new SectionListFragment();
         if (bundle != null)
             fragment.setArguments(bundle);
@@ -80,7 +79,7 @@ public class SectionListFragment extends Fragment implements SectionListContract
 
         initializeListenerAdapter(onManageSectionListener);
 
-        sectionAdapter = new SectionAdapter(onManageSectionAdapterListener ,getActivity());
+        sectionAdapter = new SectionAdapter();
         sectionAdapter.setOnManageSectionClickListener(onManageSectionAdapterListener);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
@@ -96,7 +95,7 @@ public class SectionListFragment extends Fragment implements SectionListContract
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
             onManageSectionListener = (OnManageSectionListener) context;
@@ -108,11 +107,12 @@ public class SectionListFragment extends Fragment implements SectionListContract
     @Override
     public void onDetach() {
         super.onDetach();
+        onManageSectionListener = null;
     }
 
     public void setFab(FloatingActionButton floatingActionButton) {
         this.floatingActionButton = floatingActionButton;
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        this.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onManageSectionListener.onManageSection(null);
@@ -193,6 +193,11 @@ public class SectionListFragment extends Fragment implements SectionListContract
     }
 
     @Override
+    public void setPresenter(SectionListContract.Presenter presenter) {
+        this.presenter = presenter;
+    }
+
+    @Override
     public boolean isVisibleImgNoData() {
         return lottieAnimationView.getVisibility() == View.GONE;
     }
@@ -229,6 +234,8 @@ public class SectionListFragment extends Fragment implements SectionListContract
         presenter.undo(section);
     }
 
+
+
     private void initializeListenerAdapter(final OnManageSectionListener onManageSectionListener) {
         onManageSectionAdapterListener = new SectionAdapter.OnManageSectionListener() {
 
@@ -244,8 +251,4 @@ public class SectionListFragment extends Fragment implements SectionListContract
         };
     }
 
-    @Override
-    public void setPresenter(SectionListContract.Presenter presenter) {
-        this.presenter = presenter;
-    }
 }

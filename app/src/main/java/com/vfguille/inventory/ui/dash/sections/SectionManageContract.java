@@ -1,6 +1,5 @@
 package com.vfguille.inventory.ui.dash.sections;
 
-import com.vfguille.inventory.data.model.Dependency;
 import com.vfguille.inventory.data.model.Section;
 import com.vfguille.inventory.ui.base.BaseView;
 
@@ -14,7 +13,7 @@ public interface SectionManageContract {
     }
 
     interface Presenter {
-        void validateDependency(Section section);
+        void validateSection(Section section);
 
         void add(Section section);
 

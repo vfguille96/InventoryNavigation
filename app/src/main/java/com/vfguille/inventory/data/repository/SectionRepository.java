@@ -38,12 +38,12 @@ public class SectionRepository {
             return false;
     }
 
-    public boolean edit(Section Section) {
+    public boolean edit(Section section) {
         try {
-            for (Section dependencyIt : list) {
-                if (dependencyIt.getShortName().equals(Section.getShortName())) {
-                    dependencyIt.setName(Section.getName());
-                    dependencyIt.setDescription(Section.getDescription());
+            for (Section sectionIt : list) {
+                if (sectionIt.getShortName().equals(section.getShortName())) {
+                    sectionIt.setName(section.getName());
+                    sectionIt.setDescription(section.getDescription());
                 }
             }
             return true;
@@ -53,11 +53,11 @@ public class SectionRepository {
         }
     }
 
-    public boolean delete(Section Section){
-        Iterator<Section> dependencyIterator = list.iterator();
-        while (dependencyIterator.hasNext()){
-            if (dependencyIterator.next().equals(Section)) {
-                dependencyIterator.remove();
+    public boolean delete(Section section){
+        Iterator<Section> sectionIterator = list.iterator();
+        while (sectionIterator.hasNext()){
+            if (sectionIterator.next().equals(section)) {
+                sectionIterator.remove();
                 return true;
             }
         }

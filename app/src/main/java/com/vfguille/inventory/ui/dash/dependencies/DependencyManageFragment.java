@@ -30,7 +30,7 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
     private Spinner spInventory;
     private DependencyManageContract.Presenter dependencyManagePresenter;
 
-    // Métodos del contrato SectionManageContract
+    // Métodos del contrato DependencyManageContract
     @Override
     public void setPresenter(DependencyManageContract.Presenter presenter) {
         this.dependencyManagePresenter = presenter;

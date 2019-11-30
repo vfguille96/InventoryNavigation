@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.data.model.Section;
@@ -51,10 +50,11 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvName.setText(list.get(position).getName());
         Glide.with(context).load(list.get(position).getImage()).apply(RequestOptions.circleCropTransform()).into(holder.icon);
+        holder.bind(list.get(position), onManageSectionListener);
     }
 
     public void setOnManageSectionClickListener(OnManageSectionListener onManageSectionClickListener){
-        this.onManageSectionClickListener = onManageSectionClickListener;
+        this.onManageSectionListener = onManageSectionClickListener;
     }
 
     @Override

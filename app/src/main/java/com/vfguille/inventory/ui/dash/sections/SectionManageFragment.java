@@ -21,7 +21,7 @@ import com.vfguille.inventory.data.model.Section;
 
 public class SectionManageFragment extends Fragment implements SectionManageContract.View {
 
-    public static final String TAG = "dependencyAddFragment";
+    public static final String TAG = "sectionAddFragment";
     private EditText edShortName;
     private EditText edName;
     private EditText edDescription;
@@ -117,8 +117,8 @@ public class SectionManageFragment extends Fragment implements SectionManageCont
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isDependencyValid())
-                    sectionManagePresenter.validateDependency(getSection());
+                if (isSectionValid())
+                    sectionManagePresenter.validateSection(getSection());
             }
         });
     }
@@ -137,7 +137,7 @@ public class SectionManageFragment extends Fragment implements SectionManageCont
      *
      * @return
      */
-    private boolean isDependencyValid() {
+    private boolean isSectionValid() {
         // RN1: campos no vacíos
         if (TextUtils.isEmpty(edShortName.getText().toString())) {
             showError(getString(R.string.errShortNameEmpty));
@@ -158,7 +158,7 @@ public class SectionManageFragment extends Fragment implements SectionManageCont
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_dependency_add, container, false);
+        return inflater.inflate(R.layout.fragment_section_add, container, false);
     }
 
     @Override

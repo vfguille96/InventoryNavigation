@@ -15,7 +15,7 @@ public class SectionManagePresenter extends Fragment implements SectionManageCon
     }
 
     @Override
-    public void validateDependency(Section section) {
+    public void validateSection(Section section) {
         view.onSuccessValidate();
     }
 
