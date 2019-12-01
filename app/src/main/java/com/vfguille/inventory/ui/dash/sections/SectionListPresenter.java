@@ -2,6 +2,7 @@ package com.vfguille.inventory.ui.dash.sections;
 
 import android.os.AsyncTask;
 
+import com.vfguille.inventory.R;
 import com.vfguille.inventory.data.model.Section;
 import com.vfguille.inventory.data.repository.SectionRepository;
 
@@ -29,6 +30,7 @@ public class SectionListPresenter implements SectionListContract.Presenter{
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+                setDoneImageFab(R.drawable.ic_add_black_24dp);
                 checkImageNoDataIsVisible();
                 view.showProgress();
             }
@@ -69,5 +71,9 @@ public class SectionListPresenter implements SectionListContract.Presenter{
     private void checkImageNoDataIsVisible() {
         if (!view.isVisibleImgNoData())
             view.hideImageNoData();
+    }
+
+    private void setDoneImageFab(int resource){
+        view.setDoneImageFab(resource);
     }
 }

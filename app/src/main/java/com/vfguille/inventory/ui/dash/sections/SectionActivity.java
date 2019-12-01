@@ -61,7 +61,7 @@ public class SectionActivity extends AppCompatActivity implements SectionListFra
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragmentSection, sectionManagePresenter, SectionManageFragment.TAG)
+                .replace(R.id.fragmentSection, sectionManageFragment, SectionManageFragment.TAG)
                 .addToBackStack(null)
                 .commit();
     }

@@ -112,6 +112,7 @@ public class SectionListFragment extends Fragment implements SectionListContract
 
     public void setFab(FloatingActionButton floatingActionButton) {
         this.floatingActionButton = floatingActionButton;
+        this.floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
         this.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,6 +191,11 @@ public class SectionListFragment extends Fragment implements SectionListContract
     public void onSuccessUndo(Section section) {
         sectionAdapter.add(section);
         sectionAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void setDoneImageFab(int resource) {
+        floatingActionButton.setImageResource(resource);
     }
 
     @Override

@@ -21,5 +21,6 @@ public interface SectionListContract {
         boolean isVisibleImgNoData();
         void showData(List<Section> sectionsList);
         void onSuccessUndo(Section section);
+        void setDoneImageFab(int resource);
     }
 }
