@@ -50,4 +50,8 @@
     <string name="undo">Deshacer</string>
     <string name="delete_section">Borrar sección</string>
     <string name="repository">Repositorio</string>
+    <string name="about">About us</string>
+    <string name="help">Help</string>
+    <string name="search">Search</string>
+    <string name="order">Order by</string>
 </resources>

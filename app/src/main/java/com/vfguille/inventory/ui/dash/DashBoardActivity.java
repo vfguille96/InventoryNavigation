@@ -14,10 +14,11 @@ import android.widget.Button;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vfguille.inventory.R;
+import com.vfguille.inventory.ui.base.BaseActivity;
 import com.vfguille.inventory.ui.dash.dependencies.DependencyActivity;
 import com.vfguille.inventory.ui.dash.sections.SectionActivity;
 
-public class DashBoardActivity extends AppCompatActivity{
+public class DashBoardActivity extends BaseActivity {
     FloatingActionButton floatingActionButton;
     BottomAppBar bottomAppBar;
     Button btDependencies;
@@ -46,22 +47,5 @@ public class DashBoardActivity extends AppCompatActivity{
                 startActivity(new Intent(DashBoardActivity.this, SectionActivity.class));
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.bottom_bar_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.profileMenu:
-                return true;
-            case R.id.settingsMenu:
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

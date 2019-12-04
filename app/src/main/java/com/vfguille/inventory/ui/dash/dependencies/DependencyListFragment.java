@@ -3,8 +3,12 @@ package com.vfguille.inventory.ui.dash.dependencies;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -62,6 +66,8 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        // Se debe indicar la siguiente llamada para que llame a los métodos que crean el menú.
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -250,6 +256,22 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
                 undoDeleted(undoDeleted);
             }
         }).setActionTextColor(getResources().getColor(R.color.colorPrimary, null)).show();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.dependency_list_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_order_name:
+                Toast.makeText(getActivity(), getString(R.string.order), Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void undoDeleted(Dependency dependency) {
