@@ -42,7 +42,7 @@ public class BaseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                    drawerLayout.openDrawer(Gravity.LEFT);
+                    drawerLayout.openDrawer(GravityCompat.START);
                 break;
         }
         return super.onOptionsItemSelected(item);
