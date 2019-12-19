@@ -94,7 +94,7 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializeViewElements(view);
-        initializeFab();
+        //initializeFab();
 
         Bundle bundle = getArguments();
         if (bundle != null)
@@ -121,7 +121,7 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
     /**
      * Valida la dependencia. Añade o edita.
      */
-    private void initializeFab() {
+    /*private void initializeFab() {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,7 +129,7 @@ public class DependencyManageFragment extends Fragment implements DependencyMana
                     dependencyManagePresenter.validateDependency(getDependency());
             }
         });
-    }
+    }*/
 
     /**
      * Recoge los datos de la vista y se crea una Dependencia.

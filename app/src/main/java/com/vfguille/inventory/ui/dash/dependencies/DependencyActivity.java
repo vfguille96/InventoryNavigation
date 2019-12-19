@@ -1,16 +1,8 @@
 package com.vfguille.inventory.ui.dash.dependencies;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.BaseAdapter;
-import android.widget.Toast;
 
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.data.model.Dependency;
@@ -26,7 +18,7 @@ public class DependencyActivity extends BaseActivity implements DependencyListFr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dependency);
+        setContentView(R.layout.activity_content);
         showListFragment();
     }
 

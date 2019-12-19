@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,6 +55,7 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     private LottieAnimationView lottieAnimationView;
     private LottieAnimationView skele1;
     private LottieAnimationView skele2;
+    private Toolbar toolbar;
 
     public static Fragment onNewInstance(Bundle bundle) {
         DependencyListFragment fragment = new DependencyListFragment();
@@ -68,6 +70,10 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
         setRetainInstance(true);
         // Se debe indicar la siguiente llamada para que llame a los métodos que crean el menú.
         setHasOptionsMenu(true);
+        toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.dependencies));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+
     }
 
     @Nullable
@@ -109,8 +115,8 @@ public class DependencyListFragment extends Fragment implements DependencyListCo
     }
 
     private void initializeFab(@NonNull View view) {
-        floatingActionButton = view.findViewById(R.id.fabSection);
-        bottomAppBar = view.findViewById(R.id.babSection);
+        floatingActionButton = getActivity().findViewById(R.id.fabSection);
+        //bottomAppBar = view.findViewById(R.id.babSection);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -23,5 +23,7 @@
     <color name="primary_text_default_material_light2">#de000000</color>
     <color name="secondary_text_material_light2">#8a000000</color>
 
+    <color name="white">#FFF</color>
+
 
 </resources>

@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_inventory_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeMaterial">
+        <activity android:name=".ui.base.BaseActivity"/>
         <activity
             android:name=".ui.dash.sections.SectionActivity"
             android:theme="@style/AppThemeMaterialNoActionBar"
