@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    android:translationZ="8dp">
+    android:orientation="vertical">
 
     <include layout="@layout/activity_content" />
 
@@ -15,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:translationZ="8dp"
         app:headerLayout="@layout/header_nav"
+        android:fitsSystemWindows="true"
         app:menu="@menu/bottom_bar_menu2" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

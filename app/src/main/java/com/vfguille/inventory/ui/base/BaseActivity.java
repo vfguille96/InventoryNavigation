@@ -1,5 +1,6 @@
 package com.vfguille.inventory.ui.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -16,6 +17,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.navigation.NavigationView;
 import com.vfguille.inventory.R;
+import com.vfguille.inventory.ui.dash.dependencies.DependencyActivity;
+import com.vfguille.inventory.ui.dash.sections.SectionActivity;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -40,9 +43,9 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                    drawerLayout.openDrawer(GravityCompat.START);
+        switch (item.getItemId()) {
+            case R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -54,12 +57,15 @@ public class BaseActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void setupNavigationView(){
+    private void setupNavigationView() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-
+                switch (item.getItemId()) {
+                    case R.id.action_sections:
+                        startActivity(new Intent(BaseActivity.this, SectionActivity.class));
+                    case R.id.action_dependency:
+                        startActivity(new Intent(BaseActivity.this, DependencyActivity.class));
                     case R.id.app_bar_search:
                         Toast.makeText(BaseActivity.this, getString(R.string.search), Toast.LENGTH_SHORT).show();
                         break;
