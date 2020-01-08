@@ -195,7 +195,7 @@ public class SectionListFragment extends Fragment implements SectionListContract
 
     @Override
     public void setDoneImageFab(int resource) {
-        floatingActionButton.setImageResource(resource);
+        //floatingActionButton.setImageResource(resource);
     }
 
     @Override

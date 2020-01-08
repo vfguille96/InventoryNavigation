@@ -18,7 +18,7 @@ public class DependencyActivity extends BaseActivity implements DependencyListFr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_content);
+        //setContentView(R.layout.activity_content);
         showListFragment();
     }
 
@@ -30,7 +30,7 @@ public class DependencyActivity extends BaseActivity implements DependencyListFr
         dependencyListFragment = (DependencyListFragment) fragmentManager.findFragmentByTag(DependencyListFragment.TAG);
         if (dependencyListFragment == null) {
             dependencyListFragment = (DependencyListFragment) DependencyListFragment.onNewInstance(null);
-            fragmentManager.beginTransaction().add(android.R.id.content, dependencyListFragment, DependencyListFragment.TAG).commit();
+            fragmentManager.beginTransaction().add(R.id.content, dependencyListFragment, DependencyListFragment.TAG).commit();
         }
 
         // Depués de crear la vista, se crea el Presenter (inicialización del contrato).

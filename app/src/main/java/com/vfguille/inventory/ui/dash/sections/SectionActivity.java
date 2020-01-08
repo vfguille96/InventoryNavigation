@@ -8,8 +8,9 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.data.model.Section;
+import com.vfguille.inventory.ui.base.BaseActivity;
 
-public class SectionActivity extends AppCompatActivity implements SectionListFragment.OnManageSectionListener {
+public class SectionActivity extends BaseActivity implements SectionListFragment.OnManageSectionListener {
     private SectionListFragment sectionListFragment;
     private FloatingActionButton floatingActionButton;
     private SectionManageFragment sectionManageFragment;
@@ -19,7 +20,7 @@ public class SectionActivity extends AppCompatActivity implements SectionListFra
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_section);
+        //setContentView(R.layout.activity_section);
         initializeFab();
         showSectionFragment();
     }
@@ -33,8 +34,8 @@ public class SectionActivity extends AppCompatActivity implements SectionListFra
         sectionListFragment = (SectionListFragment) fragmentManager.findFragmentByTag(SectionListFragment.TAG);
         if (sectionListFragment == null) {
             sectionListFragment = (SectionListFragment) SectionListFragment.onNewInstance(null);
-            sectionListFragment.setFab(floatingActionButton);
-            fragmentManager.beginTransaction().add(R.id.fragmentSection, sectionListFragment, SectionListFragment.TAG).commit();
+            //sectionListFragment.setFab(floatingActionButton);
+            fragmentManager.beginTransaction().add(R.id.content, sectionListFragment, SectionListFragment.TAG).commit();
         }
 
         sectionListPresenter = new SectionListPresenter(sectionListFragment);
@@ -61,7 +62,7 @@ public class SectionActivity extends AppCompatActivity implements SectionListFra
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragmentSection, sectionManageFragment, SectionManageFragment.TAG)
+                .replace(R.id.content, sectionManageFragment, SectionManageFragment.TAG)
                 .addToBackStack(null)
                 .commit();
     }

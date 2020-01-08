@@ -83,13 +83,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/babSection"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:fabAlignmentMode="center"
-        app:navigationIcon="@drawable/ic_menu_black_24dp" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

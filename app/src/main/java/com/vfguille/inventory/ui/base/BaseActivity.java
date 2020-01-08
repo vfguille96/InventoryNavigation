@@ -2,6 +2,7 @@ package com.vfguille.inventory.ui.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,12 +44,13 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Log.d("Boton hamb", Integer.toString(item.getItemId()));
         switch (item.getItemId()) {
-            case R.id.home:
+            case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @Override
