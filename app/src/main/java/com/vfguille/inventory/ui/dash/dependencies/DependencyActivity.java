@@ -18,7 +18,6 @@ public class DependencyActivity extends BaseActivity implements DependencyListFr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_content);
         showListFragment();
     }
 
@@ -67,7 +66,7 @@ public class DependencyActivity extends BaseActivity implements DependencyListFr
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(android.R.id.content, dependencyManageFragment, DependencyManageFragment.TAG)
+                .replace(R.id.content, dependencyManageFragment, DependencyManageFragment.TAG)
                 .addToBackStack(null)
                 .commit();
     }

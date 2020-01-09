@@ -66,8 +66,10 @@ public class BaseActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_sections:
                         startActivity(new Intent(BaseActivity.this, SectionActivity.class));
+                        break;
                     case R.id.action_dependency:
                         startActivity(new Intent(BaseActivity.this, DependencyActivity.class));
+                        break;
                     case R.id.app_bar_search:
                         Toast.makeText(BaseActivity.this, getString(R.string.search), Toast.LENGTH_SHORT).show();
                         break;

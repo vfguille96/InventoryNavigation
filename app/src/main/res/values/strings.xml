@@ -55,4 +55,6 @@
     <string name="search">Search</string>
     <string name="order">Order by</string>
     <string name="menu_options">Actions menu</string>
+    <string name="info">Information</string>
+    <string name="map">Map</string>
 </resources>
