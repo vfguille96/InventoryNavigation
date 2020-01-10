@@ -1,21 +1,23 @@
-package com.vfguille.inventory.ui.dash.dependencies;
+package com.vfguille.inventory.ui.dash;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.vfguille.inventory.R;
+import com.vfguille.inventory.ui.dash.dependencies.DependencyActivity;
+import com.vfguille.inventory.ui.dash.product.ProductActivity;
 import com.vfguille.inventory.ui.dash.sections.SectionActivity;
 
 public class DashBoardFragment extends Fragment {
@@ -23,8 +25,7 @@ public class DashBoardFragment extends Fragment {
     public static final String TAG = "DashBoardFragment";
     Button btDependencies;
     Button btSecion;
-
-    private OnFragmentInteractionListener mListener;
+    Button btProduct;
 
     public DashBoardFragment() { }
 
@@ -36,6 +37,7 @@ public class DashBoardFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -49,6 +51,7 @@ public class DashBoardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         btDependencies = view.findViewById(R.id.btnDependencies);
         btSecion = view.findViewById(R.id.btnSections);
+        btProduct = view.findViewById(R.id.btnProducts);
 
 
         btDependencies.setOnClickListener(new View.OnClickListener() {
@@ -64,26 +67,23 @@ public class DashBoardFragment extends Fragment {
                 startActivity(new Intent(getActivity(), SectionActivity.class));
             }
         });
+
+        btProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ProductActivity.class));
+            }
+        });
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-
-    }
 }

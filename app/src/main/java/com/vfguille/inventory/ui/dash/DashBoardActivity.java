@@ -1,32 +1,24 @@
 package com.vfguille.inventory.ui.dash;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.ui.base.BaseActivity;
-import com.vfguille.inventory.ui.dash.dependencies.DashBoardFragment;
-import com.vfguille.inventory.ui.dash.dependencies.DependencyActivity;
 import com.vfguille.inventory.ui.dash.dependencies.DependencyListFragment;
-import com.vfguille.inventory.ui.dash.sections.SectionActivity;
 
-public class DashBoardActivity extends BaseActivity implements DashBoardFragment.OnFragmentInteractionListener{
+public class DashBoardActivity extends BaseActivity{
     FloatingActionButton floatingActionButton;
     BottomAppBar bottomAppBar;
     Button btDependencies;
     Button btSecion;
     DashBoardFragment dashBoardFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +48,7 @@ public class DashBoardActivity extends BaseActivity implements DashBoardFragment
         dashBoardFragment = (DashBoardFragment) fragmentManager.findFragmentByTag(DashBoardFragment.TAG);
         if (dashBoardFragment == null) {
             dashBoardFragment = (DashBoardFragment) DashBoardFragment.newInstance();
-            fragmentManager.beginTransaction().replace(R.id.content, dashBoardFragment, DependencyListFragment.TAG).commit();
+            fragmentManager.beginTransaction().replace(R.id.content, dashBoardFragment).commit();
         }
     }
 }

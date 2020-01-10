@@ -19,6 +19,7 @@ import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.navigation.NavigationView;
 import com.vfguille.inventory.R;
 import com.vfguille.inventory.ui.dash.dependencies.DependencyActivity;
+import com.vfguille.inventory.ui.dash.product.ProductActivity;
 import com.vfguille.inventory.ui.dash.sections.SectionActivity;
 
 public class BaseActivity extends AppCompatActivity {
@@ -69,6 +70,9 @@ public class BaseActivity extends AppCompatActivity {
                         break;
                     case R.id.action_dependency:
                         startActivity(new Intent(BaseActivity.this, DependencyActivity.class));
+                        break;
+                    case R.id.action_product:
+                        startActivity(new Intent(BaseActivity.this, ProductActivity.class));
                         break;
                     case R.id.app_bar_search:
                         Toast.makeText(BaseActivity.this, getString(R.string.search), Toast.LENGTH_SHORT).show();

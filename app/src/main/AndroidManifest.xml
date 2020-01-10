@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeMaterial">
         <activity android:name=".ui.base.BaseActivity"/>
+        <activity android:name=".ui.dash.product.ProductActivity" />
         <activity
             android:name=".ui.dash.sections.SectionActivity"
             android:theme="@style/AppThemeMaterialNoActionBar"
